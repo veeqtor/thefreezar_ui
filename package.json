@@ -1,19 +1,19 @@
 {
-  "name": "reactandtypescript",
+  "name": "thefreezarui",
   "version": "1.0.0",
-  "description": "React with typescript template",
+  "description": "The frontend for the freezar application",
   "main": "index.js",
   "keywords": [],
   "author": "Victor Nwokeocha <nwokeochavictor@gmail.com>",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/veeqtor/react-typescript-template-with-redux-saga.git"
+    "url": "git+https://github.com/veeqtor/thefreezar_ui.git"
   },
   "bugs": {
-    "url": "https://github.com/veeqtor/react-typescript-template-with-redux-saga/issues"
+    "url": "https://github.com/veeqtor/thefreezar_ui/issues"
   },
-  "homepage": "https://github.com/veeqtor/react-typescript-template-with-redux-saga.#readme",
+  "homepage": "https://github.com/veeqtor/thefreezar_ui#readme",
   "scripts": {
     "clean": "rm -rf dist/",
     "build:dev": "webpack -d --env.development",
