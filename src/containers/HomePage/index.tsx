@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import SEO from '../../components/layouts/seo';
+import SEO from '../../components/layouts/SEO';
 import { goToNextPage, retrieveLastPageState } from '../../store/actions/navigation';
 import { IApplicationRootState } from '../../types';
 
