@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 
-import HomePage from '../index';
+import HomePage from '..';
 import { Provider } from 'react-redux';
 import * as navigationActions from '../../../store/actions/navigation';
 import configureStore from '../../../store/config';
@@ -20,7 +20,7 @@ const renderHomePage = (store: any, props: any) => {
   };
 };
 
-describe('Test Init', () => {
+describe('Homepage Test', () => {
   let store: any;
   const mockedgoToNextPage = navigationActions.goToNextPage as jest.Mock;
   const mockedretrieveLastPageState = navigationActions.retrieveLastPageState as jest.Mock;
