@@ -11,8 +11,8 @@ const SEO = ({ lang = 'en', title, metaDescription, author = 'Victor Nwokeocha' 
   <Helmet
     htmlAttributes={{ lang }}
     title={title}
-    defaultTitle="Template"
-    titleTemplate={`%s | Template`}
+    defaultTitle="The Freezar"
+    titleTemplate={`%s | The Freezar`}
     meta={[
       {
         name: `description`,

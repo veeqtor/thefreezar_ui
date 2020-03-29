@@ -1,3 +1,4 @@
 import home from './home';
+import comingSoon from './comingSoon';
 
-export default [home];
+export default [home, comingSoon];

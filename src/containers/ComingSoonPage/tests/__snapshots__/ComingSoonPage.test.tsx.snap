@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Coming soon page Test Should render 1`] = `
+<section
+  class="css-20q1k5"
+>
+  <div
+    class="css-yqg6lc"
+  >
+    <div
+      class="css-7w8oqj"
+    >
+      <p>
+        Coming soon
+      </p>
+      <h1>
+        The Freezar Nigeria
+      </h1>
+      <p>
+        The freezar is a multi-media company that specializes in photography, cinematography, make-up, hair and content creation.
+      </p>
+      <span />
+    </div>
+  </div>
+</section>
+`;

@@ -50,11 +50,12 @@ module.exports = {
         use: 'file-loader',
       },
       {
-        test: /\.png$/,
+        test: /\.(jpg|png)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
+              limit: 5000,
               mimetype: 'image/png',
             },
           },
