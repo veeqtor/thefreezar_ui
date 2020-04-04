@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const DotenvConfig = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
@@ -20,10 +19,6 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
   template: './src/index.html',
 });
 
-const bundleAnalyzerPlugin = new BundleAnalyzerPlugin({
-  analyzerMode: 'static',
-  openAnalyzer: false,
-});
 const momentWebPackPlugin = new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/);
 
 module.exports = {
@@ -50,11 +45,12 @@ module.exports = {
         use: 'file-loader',
       },
       {
-        test: /\.png$/,
+        test: /\.(jpg|png)$/,
         use: [
           {
             loader: 'url-loader',
             options: {
+              limit: 5000,
               mimetype: 'image/png',
             },
           },
@@ -87,7 +83,6 @@ module.exports = {
     dotenv,
     htmlWebpackPlugin,
     cleanPlugin,
-    bundleAnalyzerPlugin,
     momentWebPackPlugin,
     miniCssExtractPlugin,
     checkerPlugin,

@@ -1,26 +1,33 @@
 {
-  "name": "reactandtypescript",
+  "name": "thefreezarui",
   "version": "1.0.0",
-  "description": "React with typescript template",
+  "description": "The frontend for the freezar application",
   "main": "index.js",
+  "engines": {
+    "npm": "6.14.3",
+    "node": "13.1.0"
+  },
   "keywords": [],
   "author": "Victor Nwokeocha <nwokeochavictor@gmail.com>",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/veeqtor/react-typescript-template-with-redux-saga.git"
+    "url": "git+https://github.com/veeqtor/thefreezar_ui.git"
   },
   "bugs": {
-    "url": "https://github.com/veeqtor/react-typescript-template-with-redux-saga/issues"
+    "url": "https://github.com/veeqtor/thefreezar_ui/issues"
   },
-  "homepage": "https://github.com/veeqtor/react-typescript-template-with-redux-saga.#readme",
+  "homepage": "https://github.com/veeqtor/thefreezar_ui#readme",
   "scripts": {
-    "clean": "rm -rf dist/",
+    "prebuild": "rimraf dist",
     "build:dev": "webpack -d --env.development",
     "build:prod": "webpack -p --env.production",
     "build": "npm run build:prod",
-    "test": "jest -c jest.config.js --watch",
+    "test": "jest -c jest.config.js",
+    "test:watch": "jest -c jest.config.js --watch",
     "start": "webpack-dev-server --hot --open --env.development",
+    "start:prod": "node server.js",
+    "heroku-postbuild": "npm run build:prod",
     "lint": "tsc --noEmit && ./node_modules/.bin/eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "husky": {
@@ -38,7 +45,9 @@
     "@sentry/browser": "^5.15.0",
     "@types/redux-logger": "^3.0.7",
     "axios": "^0.19.2",
+    "compression": "^1.7.4",
     "connected-react-router": "^6.8.0",
+    "express": "^4.17.1",
     "history": "^4.10.1",
     "moment": "^2.24.0",
     "react": "^16.13.0",
@@ -50,7 +59,9 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
-    "typesafe-actions": "^5.1.0"
+    "rimraf": "^3.0.2",
+    "typesafe-actions": "^5.1.0",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",

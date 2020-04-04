@@ -16,7 +16,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(env: string | undefined) {
   const store =
-    env !== 'production'
+    env === 'development'
       ? createStore(
           rootReducer(history),
           composeEnhancers(applyMiddleware(logger, routerMiddleware(history), sagaMiddleware)),

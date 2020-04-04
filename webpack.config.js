@@ -1,11 +1,11 @@
 const webpackMerge = require('webpack-merge');
 const commonWebpackConfig = require('./webpack/webpack.common');
 
-module.exports = env => {
+module.exports = ({ production }) => {
   let envConfig;
-  !env.mode
+  !production
     ? (envConfig = require(`./webpack/webpack.development`))
-    : (envConfig = require(`./webpack/webpack.${env.mode}`));
+    : (envConfig = require(`./webpack/webpack.production`));
 
-  return webpackMerge({ mode: env.mode }, commonWebpackConfig, envConfig);
+  return webpackMerge({ mode: production ? 'production' : 'development' }, commonWebpackConfig, envConfig);
 };
