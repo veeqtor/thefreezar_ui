@@ -1,4 +1,4 @@
-import home from './home';
-import comingSoon from './comingSoon';
+import home from 'routes/home';
+import comingSoon from 'routes/comingSoon';
 
 export default [home, comingSoon];

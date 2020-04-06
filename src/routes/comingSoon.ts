@@ -1,9 +1,9 @@
-import ComingSoonPage from '../containers/ComingSoonPage';
+import ComingSoonPage from 'modules/views/ComingSoon';
 
 export default {
   title: 'Coming Soon',
   component: ComingSoonPage,
-  url: '/',
+  url: '/coming-soon',
   exact: true,
   requirePermission: false,
 };

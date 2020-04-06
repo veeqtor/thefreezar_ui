@@ -1,9 +1,9 @@
-import HomePage from '../containers/HomePage';
+import HomePage from 'modules/views/Home';
 
 export default {
-  title: 'Home',
+  title: 'Welcome',
   component: HomePage,
-  url: '/home',
+  url: '/',
   exact: true,
   requirePermission: false,
 };

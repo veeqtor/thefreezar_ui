@@ -4,10 +4,10 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import { Redirect, Switch, Route } from 'react-router-dom';
 
-import _globalStyle from './styles/_global.style';
-import routes from './routes';
-import store, { history } from './store';
-import ErrorBoundary from './components/layouts/ErrorBoundary';
+import _globalStyle from 'styles/_global.style';
+import routes from 'routes';
+import store, { history } from 'store';
+import ErrorBoundary from 'modules/components/ErrorBoundary';
 
 const App = (): React.ReactElement<{}> => {
   return (

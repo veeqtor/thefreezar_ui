@@ -3,7 +3,7 @@
 import { takeLatest, all, fork, put, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
-import { NavigationTypes, savePageState } from '../actions/navigation';
+import { NavigationTypes, savePageState } from 'store/actions/navigation';
 
 export function* nextPage(action: any) {
   yield put(push(action.payload.nextPageRoute));

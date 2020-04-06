@@ -41,8 +41,8 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.svg$/,
-        use: 'file-loader',
+        test: /\.(ttf|eot|woff2|woff|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
       },
       {
         test: /\.(jpg|png)$/,
@@ -69,7 +69,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.tsx', '.ts', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
     modules: ['./src', 'node_modules'],
   },
   externals: {

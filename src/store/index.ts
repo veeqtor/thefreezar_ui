@@ -1,4 +1,4 @@
-import configureStore, { history } from './config';
+import configureStore, { history } from 'store/config';
 
 const { NODE_ENV = 'production' } = process.env;
 
