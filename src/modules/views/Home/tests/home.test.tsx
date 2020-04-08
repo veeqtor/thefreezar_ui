@@ -5,7 +5,7 @@ import * as React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import HomeContainer from 'modules/containers/HomeContainer';
+import HomePage from 'modules/views/Home';
 import * as navigationActions from 'store/actions/navigation';
 import configureStore from 'store/config';
 
@@ -14,7 +14,7 @@ const renderHomePage = (store: any, props: any) => {
   return {
     ...render(
       <Provider store={store}>
-        <HomeContainer {...props} />
+        <HomePage {...props} />
       </Provider>,
     ),
   };

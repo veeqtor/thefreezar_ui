@@ -2,10 +2,13 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const DotenvConfig = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
+const { config } = require('dotenv');
 
+const getFaviconUrl = () => {
+  return `https://webstockreview.net/images/earth-vector-png-10.png`;
+};
 const progressPlugin = new webpack.ProgressPlugin();
 const checkerPlugin = new CheckerPlugin();
 const cleanPlugin = new CleanWebpackPlugin();
@@ -13,13 +16,26 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
   filename: '[name].css',
   chunkFilename: '[id].css',
 });
-const dotenv = new DotenvConfig();
+
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   inject: 'body',
   template: './src/index.html',
+  getFaviconUrl,
+  inject: true,
+  hash: true,
 });
 
 const momentWebPackPlugin = new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/);
+
+const envs = config().parsed;
+const stringifiedEnvs = {};
+Object.keys(envs).forEach(envKey => {
+  stringifiedEnvs[envKey] = JSON.stringify(envs[envKey]);
+});
+
+const definePlugin = new webpack.DefinePlugin({
+  'process.env': stringifiedEnvs,
+});
 
 module.exports = {
   entry: './src/index.ts',
@@ -80,11 +96,11 @@ module.exports = {
 
   plugins: [
     progressPlugin,
-    dotenv,
     htmlWebpackPlugin,
     cleanPlugin,
     momentWebPackPlugin,
     miniCssExtractPlugin,
     checkerPlugin,
+    definePlugin,
   ],
 };

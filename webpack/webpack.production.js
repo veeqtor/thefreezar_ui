@@ -1,7 +1,9 @@
+const cssNano = require('cssnano');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+  devtool: 'source-map',
   optimization: {
     runtimeChunk: {
       name: 'runtime',
@@ -20,7 +22,12 @@ module.exports = {
     },
     minimize: true,
     minimizer: [
-      new OptimizeCSSAssetsPlugin({}),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessor: cssNano,
+        cssProcessorOptions: {
+          reduceIdents: false,
+        },
+      }),
       new TerserPlugin({
         cache: true,
         parallel: 4,

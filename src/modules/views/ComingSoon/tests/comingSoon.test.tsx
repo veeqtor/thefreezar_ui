@@ -3,11 +3,11 @@
 
 import * as React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import ComingSoonContainer from 'modules/containers/ComingSoonContainer';
+import ComingSoonPage from 'modules/views/ComingSoon';
 
 const renderComingSoonPage = (props: any) => {
   return {
-    ...render(<ComingSoonContainer {...props} />),
+    ...render(<ComingSoonPage {...props} />),
   };
 };
 
