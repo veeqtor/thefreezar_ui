@@ -5,3 +5,4 @@ export const BLACK = '#272727';
 export const GRAY = '#888';
 export const LIGHT_GRAY = '#AAA';
 export const DARK_GRAY = '#7A7D7F';
+export const DARKER_GRAY = '#383838';

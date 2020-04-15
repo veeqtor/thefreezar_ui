@@ -7,7 +7,8 @@ import { IApplicationRootState } from 'types';
 import Hero from 'modules/components/Home/Hero';
 import Navigation from 'modules/components/Home/Navigation';
 import styled from '@emotion/styled';
-import Spinner from 'modules/components/Spinner';
+// import Spinner from 'modules/components/Spinner';
+import About from 'modules/components/Home/About';
 
 export interface IHomepageProps {
   title: string;
@@ -30,11 +31,13 @@ const HomePage = ({ title }: IHomepageProps): React.ReactElement => {
       <Navigation currentLocation={currentLocation.pathname} />
       <HomePage.Layout>
         <Hero />
-        <div id="about">
+        <About />
+        <div>
+          About
           <span>Welcome Home!! {title}</span>
           <button onClick={(): void => toggleClick(!click)}>Click me</button>
           <p>{currentLocation.pathname}</p>
-          <Spinner size="md" type="primary" />
+          {/* <Spinner size="md" type="primary" /> */}
         </div>
       </HomePage.Layout>
     </>

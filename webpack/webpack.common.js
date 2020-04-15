@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
-const { config } = require('dotenv');
+const DotenvConfig = require('dotenv-webpack');
 
 const getFaviconUrl = () => {
   return `https://webstockreview.net/images/earth-vector-png-10.png`;
@@ -17,6 +17,12 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
   chunkFilename: '[id].css',
 });
 
+const dotenv = new DotenvConfig({
+  safe: '../.env-sample', // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
+  systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+  silent: false, // hide any errors
+  defaults: false,
+});
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   inject: 'body',
   template: './src/index.html',
@@ -26,16 +32,6 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 });
 
 const momentWebPackPlugin = new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/);
-
-const envs = config().parsed;
-const stringifiedEnvs = {};
-Object.keys(envs).forEach(envKey => {
-  stringifiedEnvs[envKey] = JSON.stringify(envs[envKey]);
-});
-
-const definePlugin = new webpack.DefinePlugin({
-  'process.env': stringifiedEnvs,
-});
 
 module.exports = {
   entry: './src/index.ts',
@@ -101,6 +97,6 @@ module.exports = {
     momentWebPackPlugin,
     miniCssExtractPlugin,
     checkerPlugin,
-    definePlugin,
+    dotenv,
   ],
 };

@@ -22,7 +22,6 @@ HeroBackground.Wrapper = styled.section`
   background: url(${bgImgUrl}) center;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   color: ${colors.WHITE};
   display: flex;
   justify-content: center;

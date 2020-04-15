@@ -6,6 +6,7 @@ export const colors = {
   GRAY: '#888',
   LIGHT_GRAY: '#AAA',
   DARK_GRAY: '#7A7D7F',
+  DARKER_GRAY: '#2d2d2d',
 };
 
 export const fontSize = {
