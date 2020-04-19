@@ -52,11 +52,11 @@ Button.Button = styled.button<IButtonStyleProps>`
       ? `display: block;
          width: 100%;`
       : ``}
-  border-radius: 0.188em;
   padding: 0.4em 1em;
   color: ${colors.WHITE};
   font-size: ${({ size }): string => size};
   cursor: pointer;
+  border-radius: 3px;
   &:hover {
     background: ${colors.PRIMARY_HOVER};
   }

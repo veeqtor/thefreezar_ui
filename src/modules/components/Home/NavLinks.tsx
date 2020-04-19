@@ -28,19 +28,14 @@ const NavLinks = ({ location }: INavLinksProps): React.ReactElement => {
       anchor: false,
     },
     {
-      to: '/portfolio',
+      to: 'portfolio',
       title: 'Portfolio',
-      anchor: false,
+      anchor: true,
     },
     {
-      to: '/contact',
+      to: 'contact',
       title: 'Contact',
-      anchor: false,
-    },
-    {
-      to: '/coming-soon',
-      title: 'Coming Soon',
-      anchor: false,
+      anchor: true,
     },
     {
       to: 'about',
@@ -74,14 +69,24 @@ const NavLinks = ({ location }: INavLinksProps): React.ReactElement => {
 };
 
 NavLinks.listItem = styled.li<INavListItemProps>`
-  padding-right: 2em;
+  padding: 1.5em 1em;
+  border-bottom: 1px inset ${colors.BLACK};
+
+  ${mq[2]} {
+    padding-right: 1em;
+    border-bottom: unset;
+  }
+
   & a {
+    display: block;
     text-decoration: none;
     color: inherit;
     text-transform: capitalize;
     padding-bottom: 0.4em;
     cursor: pointer;
-    border-bottom: ${({ link, location }): string => (link === location ? `2px solid ${colors.PRIMARY}` : 'unset')};
+    
+    // border-bottom: ${({ link, location }): string => (link === location ? `2px solid ${colors.PRIMARY}` : 'unset')};
+
     &:hover {
       border-bottom: 2px solid ${colors.PRIMARY_HOVER};
     }
@@ -89,16 +94,20 @@ NavLinks.listItem = styled.li<INavListItemProps>`
 `;
 
 NavLinks.Wrapper = styled.div`
-  display: none;
-  ${mq[2]} {
-    display: unset;
-  }
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+  }
+
+  ${mq[2]} {
+    display: unset;
+    ul {
+      align-items: center;
+      flex-direction: row;
+    }
   }
 `;
 

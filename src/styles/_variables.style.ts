@@ -14,5 +14,5 @@ export const fontSize = {
   md: '1.5em',
   lg: '2em',
   xlg: '2.5em',
-  normal: '1em',
+  normal: '1rem',
 };

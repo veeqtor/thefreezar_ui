@@ -5,36 +5,83 @@ import { Link } from 'react-router-dom';
 import { mq } from 'styles/_global.style';
 import Social from 'modules/components/Home/Social';
 import HeroBackground from 'modules/components/Home/HeroBackground';
+import Swiper from 'react-id-swiper';
 
-const Hero = (): React.ReactElement => (
-  <HeroBackground>
-    <Hero.Content>
-      <Social />
-      <Hero.Title>
-        <Hero.Span>Wedd</Hero.Span>
-        <Hero.Span>ings</Hero.Span>
-      </Hero.Title>
-      <Hero.ButtonWrapper>
-        <Hero.Button to="/">
-          <span>Book </span>
-          <span>Now</span>
-        </Hero.Button>
-      </Hero.ButtonWrapper>
-      <Hero.Body>
-        <p>
-          we are proficient in establishing and documenting quality memories varying from pre-wedding photgraphs,
-          pre-wedding video footages, wedding coverage; photo and video inclusive to post-wedding coverage.
-        </p>
-      </Hero.Body>
-    </Hero.Content>
-  </HeroBackground>
-);
+const Hero = (): React.ReactElement => {
+  const params = {
+    slidesPerView: 1,
+    centeredSlides: true,
+    grabCursor: false,
+    speed: 3000,
+    loop: true,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true,
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+      reverseDirection: true,
+    },
+  };
+
+  const contents = [
+    {
+      first: 'Wedd',
+      second: 'ings',
+    },
+    {
+      first: 'Birth',
+      second: 'Days',
+    },
+    {
+      first: 'Engage',
+      second: 'ments',
+    },
+    {
+      first: 'Docume',
+      second: 'ntary',
+    },
+    {
+      first: 'Head',
+      second: 'shots',
+    },
+  ];
+  return (
+    <HeroBackground>
+      <Hero.Content>
+        <Social />
+        <Swiper {...params}>
+          {contents.map((content, i) => (
+            <Hero.Title key={i}>
+              <Hero.Span>{content.first}</Hero.Span>
+              <Hero.Span>{content.second}</Hero.Span>
+            </Hero.Title>
+          ))}
+        </Swiper>
+        <Hero.ButtonWrapper className="wow slideInRight" data-wow-delay="1s" data-wow-duration="2s">
+          <Hero.Button to="/">
+            <span>Book </span>
+            <span>Now</span>
+          </Hero.Button>
+        </Hero.ButtonWrapper>
+        <Hero.Body className="wow fadeInUp" data-wow-delay="1s" data-wow-duration="2s">
+          <p>
+            we are proficient in establishing and documenting quality memories varying from pre-wedding photgraphs,
+            pre-wedding video footages, wedding coverage; photo and video inclusive to post-wedding coverage.
+          </p>
+        </Hero.Body>
+      </Hero.Content>
+    </HeroBackground>
+  );
+};
 
 Hero.Content = styled.div`
   margin: auto 0;
   max-width: 45em;
+  width: 100%;
   padding: 6.25em 1em 0;
-  z-index: 2;
+  z-index: 1;
   ${mq[2]} {
     margin: auto 10em;
   }
@@ -47,7 +94,7 @@ Hero.Title = styled.div`
 `;
 
 Hero.Span = styled.span`
-  font-size: 5.25em;
+  font-size: 4.7125em;
   line-height: 0.75;
   font-family: 'Futura Bk BT';
   text-transform: uppercase;

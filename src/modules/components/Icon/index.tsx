@@ -5,9 +5,11 @@ import { fontSize, colors } from 'styles/_variables.style';
 export declare type Size = 'sm' | 'md' | 'lg' | 'xlg';
 
 interface IIconProps {
+  props?: unknown[];
   iconType: string;
   iconSize?: Size;
   color?: string;
+  customClass?: string;
   handleClick?: () => void;
 }
 
@@ -16,7 +18,7 @@ interface IWrapperProps {
   color?: string;
 }
 
-const Icon = ({ iconType, iconSize, color, handleClick }: IIconProps): React.ReactElement => {
+const Icon = ({ iconType, iconSize, color, handleClick, customClass, ...props }: IIconProps): React.ReactElement => {
   let size;
   switch (iconSize) {
     case 'sm':
@@ -36,8 +38,10 @@ const Icon = ({ iconType, iconSize, color, handleClick }: IIconProps): React.Rea
   }
   return (
     <Icon.Wrapper
-      className={`icon ion-${iconType}`}
+      {...props}
+      className={`icon ion-${iconType} ${customClass}`}
       size={size}
+      style={{ backgroundImage: 'unset' }}
       color={color}
       onClick={(): void => {
         if (handleClick) handleClick();

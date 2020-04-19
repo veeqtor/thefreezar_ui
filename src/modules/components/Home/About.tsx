@@ -13,7 +13,7 @@ const About = (): React.ReactElement => (
     <About.Header>
       <h2>About</h2>
     </About.Header>
-    <About.Content>
+    <About.Content className="wow fadeInUp" data-wow-delay="1s" data-wow-duration="2s">
       <p>
         <span>The Freezar</span> is multi-media company that specializes in photography, cinematography, make-up,hair,
         content-creation . We understand that personal client relationship is the key to repeat business therefore we
@@ -21,7 +21,7 @@ const About = (): React.ReactElement => (
         of service to suit the needs of our esteem clients.
       </p>
     </About.Content>
-    <About.Footer>
+    <About.Footer className="wow fadeIn" data-wow-delay="2s" data-wow-duration="2s">
       <div>
         <img src={motto} alt="motto" />
       </div>
@@ -33,11 +33,10 @@ const About = (): React.ReactElement => (
 );
 
 About.Wrapper = styled.section`
-  border-top: 1px solid ${colors.GRAY};
+  border-top: 1px solid ${colors.DARKER_GRAY};
   min-height: 500px;
   width: 100%;
-  background: ${colors.BLACK};
-  padding: 1em;
+  padding: 3em 1em;
   text-align: center;
   color: ${colors.WHITE};
   overflow-x: hidden;
@@ -55,15 +54,23 @@ About.Wrapper = styled.section`
 About.AboutText = styled.div`
   position: absolute;
   color: ${colors.DARKER_GRAY};
-  top: 0;
+  top: 3%;
+  left: 25%;
   span {
-    font-size: 7em;
+    font-size: 3em;
     font-family: Futura;
     text-transform: uppercase;
+
+    ${mq[1]} {
+      font-size: 7em;
+    }
   }
   ${mq[1]} {
     left: 25%;
     top: 5%;
+  }
+  ${mq[2]} {
+    left: 15%;
   }
 `;
 
@@ -75,25 +82,17 @@ About.Header = styled.div`
 
 About.Content = styled.div`
   position: relative;
-  ${mq[2]} {
-    padding: 0 10em;
-  }
-  ${mq[3]} {
-    padding: 0 20em;
-  }
+  margin: 0 auto;
+  max-width: 600px;
 `;
 
 About.Footer = styled.div`
+  margin: 0 auto;
+  max-width: 600px;
   ${mq[1]} {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-  }
-  ${mq[2]} {
-    padding: 0 10em;
-  }
-  ${mq[3]} {
-    padding: 0 20em;
   }
 `;
 

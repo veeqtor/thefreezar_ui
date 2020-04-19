@@ -14,7 +14,7 @@ to {
 export declare type type = 'primary' | 'secondary';
 
 interface ISpinnerWrapper {
-  size: Size | undefined;
+  size?: Size | undefined;
   type?: type;
 }
 

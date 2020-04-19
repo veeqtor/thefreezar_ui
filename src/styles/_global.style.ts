@@ -3,13 +3,14 @@ import fonts from 'styles/fonts';
 import { colors } from 'styles/_variables.style';
 
 const breakpoints = [
-  550, // SmartPhnes
+  320, // SmartPhnes
+  640, // tablets
   768, // tablets
   1024, // laptops
-  1440, // laptops
 ];
 
-export const mq = breakpoints.map(bp => `@media only screen and (min-device-width : ${bp}px)`);
+/* If screen size is more than the breakpoint wide */
+export const mq = breakpoints.map(bp => `@media screen and (min-width : ${bp}px)`);
 
 export default css`
   ${fonts}
@@ -24,6 +25,17 @@ export default css`
     }
     ${mq[1]} {
       font-size: 17px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${colors.DARKER_GRAY};
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: ${colors.LIGHT_GRAY};
     }
   }
   * {

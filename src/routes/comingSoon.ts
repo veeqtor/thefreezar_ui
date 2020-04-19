@@ -1,9 +1,14 @@
-import ComingSoonPage from 'modules/views/ComingSoon';
+import withSuspense, { IWithSuspenseProps } from 'modules/HOC/withSuspense';
+
+const data: IWithSuspenseProps = {
+  page: 'ComingSoon',
+  data: {
+    title: 'Coming Soon',
+  },
+};
 
 export default {
-  title: 'Coming Soon',
-  component: ComingSoonPage,
-  url: '/coming-soon',
+  component: withSuspense(data),
+  path: '/coming-soon',
   exact: true,
-  requirePermission: false,
 };

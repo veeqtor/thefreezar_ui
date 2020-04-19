@@ -1,9 +1,13 @@
-import HomePage from 'modules/views/Home';
+import withSuspense, { IWithSuspenseProps } from 'modules/HOC/withSuspense';
 
+const data: IWithSuspenseProps = {
+  page: 'Home',
+  data: {
+    title: 'Welcome',
+  },
+};
 export default {
-  title: 'Welcome',
-  component: HomePage,
-  url: '/',
+  path: '/',
+  component: withSuspense(data),
   exact: true,
-  requirePermission: false,
 };
