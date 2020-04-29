@@ -15,6 +15,7 @@ module.exports = {
   },
   testMatch: ['<rootDir>/src/**/?(*.)(test|spec).{ts,tsx}'], // looks for your test
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  moduleDirectories: ['node_modules', 'src'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'], // sets ut test files
   coverageDirectory: './coverage',

@@ -1,6 +1,6 @@
 import { createAction } from 'typesafe-actions';
-import { NavigationTypes } from './navigation.constants';
-import { Payload } from '../../../types';
+import { NavigationTypes } from 'store/actions/navigation/navigation.constants';
+import { Payload } from 'types';
 
 const retrieveLastPageState = createAction(NavigationTypes.NAVIGATION_RETRIEVE_REQUEST)<undefined>();
 const savePageState = createAction(NavigationTypes.NAVIGATION_RETRIEVED)<Payload>();

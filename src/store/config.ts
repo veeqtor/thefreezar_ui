@@ -5,8 +5,8 @@ import { routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import logger from 'redux-logger';
 
-import rootReducer from './reducers/index';
-import rootSaga from './sagas';
+import rootReducer from 'store/reducers/index';
+import rootSaga from 'store/sagas';
 
 export const history = createBrowserHistory();
 

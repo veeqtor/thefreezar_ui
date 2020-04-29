@@ -1,6 +1,6 @@
 import { ActionType } from 'typesafe-actions';
-import * as actions from '.';
-import { IApplicationRootState } from '../../../types';
+import * as actions from 'store/actions/navigation';
+import { IApplicationRootState } from 'types';
 
 type NavigationActions = ActionType<typeof actions>;
 

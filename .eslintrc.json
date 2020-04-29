@@ -15,7 +15,7 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 9,
+    "ecmaVersion": 2018,
     "ecmaFeatures": {
       "jsx": true,
       "es6": true,
@@ -23,8 +23,7 @@
     }
   },
   "rules": {
-    "@typescript-eslint/interface-name-prefix": ["error", { "prefixWithI": "always" }],
-    "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": true }]
+    "@typescript-eslint/interface-name-prefix": ["error", { "prefixWithI": "always" }]
   },
   "overrides": [
     {

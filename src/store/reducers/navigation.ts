@@ -1,5 +1,5 @@
-import { NavigationTypes } from '../actions/navigation';
-import { ContainerState, ContainerActions } from '../actions/navigation/types';
+import { NavigationTypes } from 'store/actions/navigation';
+import { ContainerState, ContainerActions } from 'store/actions/navigation/types';
 
 const initialState: ContainerState = {
   data: {},
