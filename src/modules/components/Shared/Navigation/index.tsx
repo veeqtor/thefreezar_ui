@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 
-import NavLinks from 'modules/components/Home/NavLinks';
-import Header from 'modules/components/Home/Header';
+import NavLinks from 'modules/components/Shared/Navigation/NavLinks';
+import Header from 'modules/components/Shared/Navigation/Header';
 import { colors } from 'styles/_variables.style';
 
 interface INavigationProps {

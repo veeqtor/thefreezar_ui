@@ -3,8 +3,10 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import home from 'routes/home';
 import comingSoon from 'routes/comingSoon';
+import booking from 'routes/booking';
+import bookingDetail from 'routes/bookingDetail';
 
-const routes = [home, comingSoon];
+const routes = [home, comingSoon, booking, bookingDetail];
 
 const Routes = (): React.ReactElement => {
   return (

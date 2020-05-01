@@ -2,11 +2,13 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import navigation from 'store/reducers/navigation';
+import landingPage from 'store/reducers/home';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function createRootReducer(history: any) {
   return combineReducers({
     router: connectRouter(history),
     navigation,
+    landingPage,
   });
 }

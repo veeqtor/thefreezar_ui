@@ -42,6 +42,11 @@ const NavLinks = ({ location }: INavLinksProps): React.ReactElement => {
       title: 'About',
       anchor: true,
     },
+    {
+      to: '/booking',
+      title: 'Book Now',
+      anchor: false,
+    },
   ];
   const linksItems = navLinks.map((link, i) => {
     let links;

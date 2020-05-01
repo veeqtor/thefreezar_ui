@@ -1,19 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import styled from '@emotion/styled';
 
 interface IFormProps {
-  defaultValues: Record<string, string | number>;
+  defaultValues: Record<string, any>;
   handelOnSubmit: Function;
   validate: Function;
   children: (props: IChildrenProps) => React.ReactNode;
 }
 
 interface IChildrenProps {
-  values: Record<string, string | number>;
-  touchedValues: Record<string, string | number>;
-  errors: Record<string, string | number>;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  handleBlur: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  values: Record<string, any>;
+  touchedValues: Record<string, any>;
+  errors: Record<string, any>;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  handleBlur: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
 }
 
 const Form = (props: IFormProps): React.ReactElement<IFormProps> => {
@@ -22,7 +23,7 @@ const Form = (props: IFormProps): React.ReactElement<IFormProps> => {
   const [touchedValues, setTouchedValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>): void => {
     const {
       target: { name, value },
     } = event;
@@ -32,7 +33,7 @@ const Form = (props: IFormProps): React.ReactElement<IFormProps> => {
     }));
   };
 
-  const handleBlur = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+  const handleBlur = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>): void => {
     const {
       target: { name, value },
     } = event;

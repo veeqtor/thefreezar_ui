@@ -1,27 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/display-name */
 import * as React from 'react';
 import styled from '@emotion/styled';
 import Swiper from 'react-id-swiper';
 import { colors } from 'styles/_variables.style';
-import { IPortfolioImageUrls } from 'modules/views/Home';
 import { mq } from 'styles/_global.style';
-import Icon from 'modules/components/Icon';
+import Icon from 'modules/components/Shared/ui/Icon';
 
 interface IPortfolioImgWrapper {
   imageUrl: string;
 }
 
 interface IPortfolioProps {
-  imageUrls: IPortfolioImageUrls[];
+  porfolioUrls: Record<string, any>[];
 }
 
-const Portfolio = ({ imageUrls }: IPortfolioProps): React.ReactElement => {
+const Portfolio = ({ porfolioUrls }: IPortfolioProps): React.ReactElement => {
   const params = {
     centeredSlides: true,
     slidesPerView: 4,
     spaceBetween: 10,
     grabCursor: true,
     loop: true,
+    rebuildOnUpdate: true,
     effect: 'coverflow',
     coverflowEffect: {
       rotate: 30,
@@ -70,9 +71,7 @@ const Portfolio = ({ imageUrls }: IPortfolioProps): React.ReactElement => {
       </Portfolio.Header>
       <Portfolio.Content>
         <Swiper {...params}>
-          {imageUrls.map((url, i) => (
-            <Portfolio.Img key={i} imageUrl={url.url} />
-          ))}
+          {porfolioUrls && porfolioUrls.map((el, i) => <Portfolio.Img key={i} imageUrl={el.url} />)}
         </Swiper>
       </Portfolio.Content>
     </Portfolio.Wrapper>

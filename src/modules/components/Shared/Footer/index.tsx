@@ -27,7 +27,8 @@ Footer.Wrapper = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  position: absolute;
+  bottom: 0;
   a {
     text-decoration: none;
     color: ${colors.GRAY};

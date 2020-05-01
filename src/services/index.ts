@@ -7,10 +7,10 @@ import axios, { AxiosInstance } from 'axios';
 const axiosInstance = (): AxiosInstance => {
   const instanceCreate = axios.create({
     baseURL: process.env.API_URL,
-    timeout: 3000,
+    timeout: 15000,
     withCredentials: true,
   });
   return instanceCreate;
 };
 
-export default axiosInstance;
+export default axiosInstance();

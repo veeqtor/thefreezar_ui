@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import Icon, { Size } from 'modules/components/Icon';
+import Icon, { Size } from 'modules/components/Shared/ui/Icon';
 import { colors } from 'styles/_variables.style';
 import { mq } from 'styles/_global.style';
 

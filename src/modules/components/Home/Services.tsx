@@ -85,6 +85,7 @@ Services.Content = styled.div`
 Services.Card = styled.div`
   max-width: 400px;
   min-height: 300px;
+  margin: 0 auto;
   padding: 1em;
   border-radius: 3px;
   box-shadow: 0 1px 3px 0 rgba(46, 46, 46, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.06);
