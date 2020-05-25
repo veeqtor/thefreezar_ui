@@ -22,18 +22,16 @@ const Input = (props: IInputProps): React.ReactElement => {
   const { name, type, placeholder, label, value, handleChange, handleBlur } = props;
   return (
     <Input.Wrapper>
-      <Input.Label htmlFor={name}>
-        {label}
-        <Input.Input
-          name={name}
-          id={name}
-          type={type || 'text'}
-          placeholder={placeholder}
-          value={value}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-      </Input.Label>
+      <Input.Label htmlFor={name}>{label}</Input.Label>
+      <Input.Input
+        name={name}
+        id={name}
+        type={type || 'text'}
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
     </Input.Wrapper>
   );
 };
@@ -42,7 +40,10 @@ Input.Wrapper = styled.div`
   padding-bottom: 1em;
 `;
 
-Input.Label = styled.label<ILabelAtrProps>``;
+Input.Label = styled.label<ILabelAtrProps>`
+  padding: 0.6em 0;
+  display: block;
+`;
 
 Input.Input = styled.input`
   width: 100%;

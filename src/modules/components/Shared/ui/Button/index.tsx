@@ -12,6 +12,7 @@ interface IButtonProps {
   buttonSize?: string;
   buttonType?: ButtonType;
   buttonStyle: ButtonStyle;
+  handleOnclick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 interface IButtonStyleProps {
@@ -21,7 +22,7 @@ interface IButtonStyleProps {
 }
 
 const Button = (props: IButtonProps): React.ReactElement => {
-  const { title, type, buttonSize, buttonType, buttonStyle }: IButtonProps = props;
+  const { title, type, buttonSize, buttonType, buttonStyle, handleOnclick }: IButtonProps = props;
   let size;
   switch (buttonSize) {
     case 'sm':
@@ -40,7 +41,13 @@ const Button = (props: IButtonProps): React.ReactElement => {
       size = fontSize.normal;
   }
   return (
-    <Button.Button type={type || 'button'} size={size} buttonType={buttonType} buttonStyle={buttonStyle}>
+    <Button.Button
+      type={type || 'button'}
+      size={size}
+      buttonType={buttonType}
+      buttonStyle={buttonStyle}
+      onClick={handleOnclick}
+    >
       {title}
     </Button.Button>
   );
@@ -52,7 +59,7 @@ Button.Button = styled.button<IButtonStyleProps>`
       ? `display: block;
          width: 100%;`
       : ``}
-  padding: 0.4em 1em;
+  padding: 0.5125em 1em;
   color: ${colors.WHITE};
   font-size: ${({ size }): string => size};
   cursor: pointer;

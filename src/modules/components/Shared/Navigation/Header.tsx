@@ -27,9 +27,9 @@ const Header = ({ children }: IHeaderProps): React.ReactElement => {
   const [headerBg, setHeaderBg] = React.useState(false);
 
   useScrollPosition(({ currPos }) => {
-    if (currPos.y < -200 && !headerBg) {
+    if (currPos.y < -100 && !headerBg) {
       setHeaderBg(!headerBg);
-    } else if (currPos.y > -200 && headerBg) {
+    } else if (currPos.y > -100 && headerBg) {
       setHeaderBg(false);
     }
   });
@@ -87,7 +87,7 @@ Header.Nav = styled.nav<IHeaderNavProp>`
   left: 0;
   box-shadow: 0 1px 3px 0 rgba(46, 46, 46, 0.45), 0 1px 2px 0 rgba(255, 255, 255, 0.1);
   transition: all 500ms ease-in-out;
-  top: ${({ isOpen, headerBg }): string => (isOpen ? (headerBg ? '4em' : '6.25em') : '-20em')};
+  top: ${({ isOpen, headerBg }): string => (isOpen ? (headerBg ? '4em' : '6.25em') : '-200em')};
 
   ${mq[2]} {
     width: unset;

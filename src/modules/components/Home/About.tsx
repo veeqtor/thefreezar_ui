@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { colors } from 'styles/_variables.style';
 import motto from 'assets/img/concept.png';
-import Button from 'modules/components/Button';
+import Button from 'modules/components/Shared/ui/Button';
 import { mq } from 'styles/_global.style';
 
 const About = (): React.ReactElement => (

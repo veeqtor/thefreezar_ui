@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { colors } from 'styles/_variables.style';
@@ -7,60 +8,43 @@ import Social from 'modules/components/Home/Social';
 import HeroBackground from 'modules/components/Home/HeroBackground';
 import Swiper from 'react-id-swiper';
 
-const Hero = (): React.ReactElement => {
+interface IHeroProps {
+  heroUrls: Record<string, any>[];
+}
+
+const Hero = ({ heroUrls }: IHeroProps): React.ReactElement => {
   const params = {
     slidesPerView: 1,
     centeredSlides: true,
     grabCursor: false,
-    speed: 3000,
+    speed: 2000,
     loop: true,
     effect: 'fade',
     fadeEffect: {
       crossFade: true,
     },
     autoplay: {
-      delay: 5000,
+      delay: 8000,
       disableOnInteraction: false,
       reverseDirection: true,
     },
   };
 
-  const contents = [
-    {
-      first: 'Wedd',
-      second: 'ings',
-    },
-    {
-      first: 'Birth',
-      second: 'Days',
-    },
-    {
-      first: 'Engage',
-      second: 'ments',
-    },
-    {
-      first: 'Docume',
-      second: 'ntary',
-    },
-    {
-      first: 'Head',
-      second: 'shots',
-    },
-  ];
   return (
-    <HeroBackground>
+    <HeroBackground bgUrls={heroUrls}>
       <Hero.Content>
         <Social />
         <Swiper {...params}>
-          {contents.map((content, i) => (
-            <Hero.Title key={i}>
-              <Hero.Span>{content.first}</Hero.Span>
-              <Hero.Span>{content.second}</Hero.Span>
-            </Hero.Title>
-          ))}
+          {heroUrls &&
+            heroUrls.map((el, i) => (
+              <Hero.Title key={i}>
+                <Hero.Span>{el.caption.first}</Hero.Span>
+                <Hero.Span>{el.caption.second}</Hero.Span>
+              </Hero.Title>
+            ))}
         </Swiper>
-        <Hero.ButtonWrapper className="wow slideInRight" data-wow-delay="1s" data-wow-duration="2s">
-          <Hero.Button to="/">
+        <Hero.ButtonWrapper className="wow slideInRight" data-wow-duration="2s">
+          <Hero.Button to="/booking">
             <span>Book </span>
             <span>Now</span>
           </Hero.Button>

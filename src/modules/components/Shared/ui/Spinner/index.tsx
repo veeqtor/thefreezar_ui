@@ -4,7 +4,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { jsx, keyframes } from '@emotion/core';
 import { colors } from 'styles/_variables.style';
-import { Size } from 'modules/components/Icon';
+import { Size } from 'modules/components/Shared/ui/Icon';
 
 const spin = keyframes`
 to {
@@ -25,6 +25,10 @@ interface ISpinnerProps {
 const Spinner = ({ size, type }: ISpinnerProps): React.ReactElement => <Spinner.Wrapper size={size} type={type} />;
 
 Spinner.Wrapper = styled.div<ISpinnerWrapper>`
+background: ${colors.BLACK};
+height: 100vh;
+z-index: 1000;
+position: relative;
 &::before {
     position: absolute;
     top: 50%;

@@ -22,6 +22,7 @@ export function* watchLoadCurrentPage() {
 export function* watchNextPage() {
   yield takeLatest(NavigationTypes.NAVIGATION_CHANGE, nextPage);
 }
+
 export default function* navigationSaga() {
   yield all([fork(watchNextPage), fork(watchLoadCurrentPage)]);
 }

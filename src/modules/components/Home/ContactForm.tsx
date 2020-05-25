@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import Input from 'modules/components/Input';
-import Textarea from 'modules/components/Textarea';
-import Button from 'modules/components/Button';
+import Input from 'modules/components/Shared/ui/Input';
+import Textarea from 'modules/components/Shared/ui/Textarea';
+import Button from 'modules/components/Shared/ui/Button';
 import Form from 'modules/components/Form';
 import { mq } from 'styles/_global.style';
 

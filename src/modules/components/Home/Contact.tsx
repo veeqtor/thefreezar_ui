@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { colors } from 'styles/_variables.style';
 import { mq } from 'styles/_global.style';
 import ContactForm from 'modules/components/Home/ContactForm';
-import Icon from 'modules/components/Icon';
+import Icon from 'modules/components/Shared/ui/Icon';
 
 interface IContactInfo {
   icon: string;
