@@ -26,7 +26,7 @@ const Hero = ({ heroUrls }: IHeroProps): React.ReactElement => {
     autoplay: {
       delay: 8000,
       disableOnInteraction: false,
-      reverseDirection: true,
+      reverseDirection: false,
     },
   };
 

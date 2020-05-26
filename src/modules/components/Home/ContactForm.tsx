@@ -56,7 +56,7 @@ const ContactForm = (): React.ReactElement => {
               handleBlur={handleBlur}
               handleChange={handleChange}
             />
-            <Button title="Send Message" type="submit" buttonType="block" buttonStyle="outline" />
+            <Button title="Send Message" type="submit" buttonType="block" buttonStyle="primary" />
           </ContactForm.Wrapper>
         );
       }}

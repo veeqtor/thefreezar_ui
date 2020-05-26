@@ -72,4 +72,17 @@ export default css`
   .fade-exit-active {
     transition: all 1000ms ease-in-out;
   }
+
+  a:active,
+  a:focus,
+  button:active,
+  button:focus,
+  div:active,
+  div:focus,
+  span:active,
+  span:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+  }
 `;

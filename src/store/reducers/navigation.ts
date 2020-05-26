@@ -2,7 +2,11 @@ import { NavigationTypes } from 'store/actions/navigation';
 import { ContainerState, ContainerActions } from 'store/actions/navigation/types';
 
 const initialState: ContainerState = {
-  data: {},
+  data: {
+    dashboard: {
+      sideBarExpanded: false,
+    },
+  },
   nextPageRoute: '',
   status: {
     isChanged: false,

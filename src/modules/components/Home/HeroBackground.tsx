@@ -23,7 +23,7 @@ const HeroBackground = ({ bgUrls, children }: IHeroBackground): React.ReactEleme
     autoplay: {
       delay: 8000,
       disableOnInteraction: false,
-      reverseDirection: true,
+      reverseDirection: false,
     },
   };
   return (

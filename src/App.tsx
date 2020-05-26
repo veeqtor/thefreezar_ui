@@ -6,9 +6,7 @@ import { Provider } from 'react-redux';
 import _globalStyle from 'styles/_global.style';
 import store, { history } from 'store';
 import ErrorBoundary from 'modules/components/ErrorBoundary';
-import Routes from 'routes';
-import Navigation from 'modules/components/Shared/Navigation';
-import Footer from 'modules/components/Shared/Footer';
+import Views from 'modules/views';
 
 const App = (): React.ReactElement<{}> => {
   return (
@@ -16,9 +14,7 @@ const App = (): React.ReactElement<{}> => {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Global styles={_globalStyle} />
-          <Navigation currentLocation={history.location.pathname} />
-          <Routes />
-          <Footer />
+          <Views location={{}} />
         </ConnectedRouter>
       </Provider>
     </ErrorBoundary>

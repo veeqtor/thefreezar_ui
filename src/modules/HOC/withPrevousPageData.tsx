@@ -9,7 +9,9 @@ interface IWrapperProps {
 
 const Wrapper = (props: IWrapperProps): React.ReactElement => {
   const { children, previousPageData } = props;
-  previousPageData();
+  React.useEffect(() => {
+    previousPageData();
+  }, []);
   return <div>{children}</div>;
 };
 
