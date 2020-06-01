@@ -14,9 +14,9 @@ const withSuspense = (args: IWithSuspenseProps): React.FC => {
     const LazyComponent = React.lazy(() => import(`modules/views/${page}`));
     return (
       <React.Suspense fallback={<Spinner type="primary" />}>
-        <Wrapper>
-          <LazyComponent {...props} {...data} />
-        </Wrapper>
+        {/* <Wrapper> */}
+        <LazyComponent {...props} {...data} />
+        {/* </Wrapper> */}
       </React.Suspense>
     );
   };

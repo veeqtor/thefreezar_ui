@@ -19,7 +19,8 @@ const Footer = (): React.ReactElement => {
 
 Footer.Wrapper = styled.section`
   border-top: 1px solid ${colors.DARKER_GRAY};
-  min-height: 20px;
+  min-height: 3em;
+  height: 3em;
   width: 100%;
   padding: 0.85em 1em;
   font-size: small;

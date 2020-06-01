@@ -5,8 +5,9 @@ import home from 'routes/home';
 import comingSoon from 'routes/comingSoon';
 import booking from 'routes/booking';
 import bookingDetail from 'routes/bookingDetail';
+import dashboard from 'routes/dashboard';
 
-const routes = [home, comingSoon, booking, bookingDetail];
+const routes = [home, comingSoon, booking, bookingDetail, dashboard];
 
 const Routes = (): React.ReactElement => {
   return (

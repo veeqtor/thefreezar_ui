@@ -9,6 +9,7 @@ interface IIconProps {
   iconType: string;
   iconSize?: Size;
   color?: string;
+  hoverColor?: string;
   customClass?: string;
   handleClick?: () => void;
 }
@@ -16,9 +17,18 @@ interface IIconProps {
 interface IWrapperProps {
   size: string;
   color?: string;
+  hoverColor?: string;
 }
 
-const Icon = ({ iconType, iconSize, color, handleClick, customClass, ...props }: IIconProps): React.ReactElement => {
+const Icon = ({
+  iconType,
+  iconSize,
+  color,
+  hoverColor,
+  handleClick,
+  customClass,
+  ...props
+}: IIconProps): React.ReactElement => {
   let size;
   switch (iconSize) {
     case 'sm':
@@ -43,6 +53,7 @@ const Icon = ({ iconType, iconSize, color, handleClick, customClass, ...props }:
       size={size}
       style={{ backgroundImage: 'unset' }}
       color={color}
+      hoverColor={hoverColor}
       onClick={(): void => {
         if (handleClick) handleClick();
       }}
@@ -53,6 +64,11 @@ const Icon = ({ iconType, iconSize, color, handleClick, customClass, ...props }:
 Icon.Wrapper = styled.i<IWrapperProps>`
   font-size: ${({ size }): string => size};
   color: ${({ color }): string => color || colors.WHITE};
+  transition: all 300ms ease-in-out;
+
+  &:hover {
+    color: ${({ hoverColor }): string => hoverColor || colors.WHITE};
+  }
 `;
 
 export default Icon;
