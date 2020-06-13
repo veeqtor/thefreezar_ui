@@ -73,16 +73,18 @@ export default css`
     transition: all 1000ms ease-in-out;
   }
 
-  a:active,
-  a:focus,
-  button:active,
-  button:focus,
-  div:active,
-  div:focus,
-  span:active,
-  span:focus {
-    outline: 0;
-    border: none;
-    -moz-outline-style: none;
+  .transition-item-enter {
+    opacity: 0;
+  }
+  .transition-item-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms ease-in-out;
+  }
+  .transition-item-exit {
+    opacity: 1;
+  }
+  .transition-item-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms ease-in-out;
   }
 `;

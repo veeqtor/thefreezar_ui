@@ -18,6 +18,7 @@ interface IWrapperProps {
   size: string;
   color?: string;
   hoverColor?: string;
+  enableClickCursor?: boolean;
 }
 
 const Icon = ({
@@ -54,6 +55,7 @@ const Icon = ({
       style={{ backgroundImage: 'unset' }}
       color={color}
       hoverColor={hoverColor}
+      enableClickCursor={!!handleClick}
       onClick={(): void => {
         if (handleClick) handleClick();
       }}
@@ -65,7 +67,7 @@ Icon.Wrapper = styled.i<IWrapperProps>`
   font-size: ${({ size }): string => size};
   color: ${({ color }): string => color || colors.WHITE};
   transition: all 300ms ease-in-out;
-
+  ${({ enableClickCursor }): string => (enableClickCursor ? 'cursor: pointer' : '')};
   &:hover {
     color: ${({ hoverColor }): string => hoverColor || colors.WHITE};
   }

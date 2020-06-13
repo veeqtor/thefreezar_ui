@@ -16,16 +16,6 @@ export default {
 const getDashBoardRoutes = (path: string): RouteProps[] => {
   return [
     {
-      path: `${path}/not-found`,
-      component: withSuspense({
-        page: 'Dashboard/NotFound',
-        data: {
-          title: 'Dashboard - NotFound',
-        },
-      }),
-      exact: true,
-    },
-    {
       path: `${path}/overview`,
       component: withSuspense({
         page: 'Dashboard/Overview',
@@ -41,6 +31,26 @@ const getDashBoardRoutes = (path: string): RouteProps[] => {
         page: 'Dashboard/Profile',
         data: {
           title: 'Dashboard - Profile',
+        },
+      }),
+      exact: true,
+    },
+    {
+      path: `${path}/sessions`,
+      component: withSuspense({
+        page: 'Dashboard/Sessions',
+        data: {
+          title: 'Dashboard - Sessions',
+        },
+      }),
+      exact: true,
+    },
+    {
+      path: `${path}/settings`,
+      component: withSuspense({
+        page: 'Dashboard/Settings',
+        data: {
+          title: 'Dashboard - Settings',
         },
       }),
       exact: true,

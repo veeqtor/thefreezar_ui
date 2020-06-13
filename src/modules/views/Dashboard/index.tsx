@@ -71,7 +71,7 @@ const Dashboard = (props: IDashboardProps): React.ReactElement => {
           {getDashBoardRoutes(path).map((route, index) => (
             <Route key={index} {...route} />
           ))}
-          <Redirect to="/dashboard/not-found" />
+          <Redirect to="/dashboard/overview" />
         </Switch>
       }
     </DashboardLayout>

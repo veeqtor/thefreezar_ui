@@ -23,7 +23,12 @@ const DashboardLayout = (props: IDashboardProps): React.ReactElement => {
         currentRoute={currentRoute}
         logOut={logOutHandler}
       />
-      <DashboardLayout.MainContent sideBarExpanded={isSideBarExpanded}>{children}</DashboardLayout.MainContent>
+      <DashboardLayout.MainContent sideBarExpanded={isSideBarExpanded}>
+        <DashboardLayout.MainContentWrapper>
+          <span>{currentRoute}</span>
+          {children}
+        </DashboardLayout.MainContentWrapper>
+      </DashboardLayout.MainContent>
     </DashboardLayout.Wrapper>
   );
 };
@@ -33,6 +38,20 @@ DashboardLayout.Wrapper = styled.section`
   padding-bottom: 2.3em;
   height: 100vh;
   display: flex;
+`;
+
+DashboardLayout.MainContentWrapper = styled.div`
+  padding: 1em;
+  min-height: 85vh;
+  background-color: ${colors.BLACK};
+  border-radius: 5px;
+
+  & > span {
+    color: ${colors.DARKER_GRAY};
+    font-size: 2em;
+    font-family: Futura;
+    text-transform: uppercase;
+  }
 `;
 
 DashboardLayout.MainContent = styled.main<{ sideBarExpanded: boolean }>`
