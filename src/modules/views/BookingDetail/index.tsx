@@ -13,6 +13,7 @@ import { Tabs, TabPanel } from 'modules/components/Shared/ui/Tabs';
 import Textarea from 'modules/components/Shared/ui/Textarea';
 import BookingReviewCard, { IBookingReviewCardProp } from 'modules/components/Booking/BookingReviewCard';
 import { goToNextPage } from 'store/actions/navigation';
+import { validationSchemas } from 'utils';
 
 export interface IBookingDetailPageProp {
   title: string;
@@ -102,7 +103,12 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
               <span>{price}</span>
             </div>
             <div style={{ margin: '1em 0' }}>
-              <Form handelOnSubmit={onSubmit} defaultValues={initialValues} validate={validate}>
+              <Form
+                handelOnSubmit={onSubmit}
+                defaultValues={initialValues}
+                onTouchValidationSchemas={validate}
+                onSubmitValidationSchema={validationSchemas.imageUploadOnSubmit}
+              >
                 {({ values, handleChange }): React.ReactNode => {
                   const getPrice = (values: Record<string, string | number>): void => {
                     const [selectedObj] = packages.filter(p => p.value === +values.package);
@@ -178,7 +184,7 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
                   <BookingReviewCard key={i} name={review.name} date={review.date} review={review.review} />
                 ))}
                 <div style={{ margin: '1em' }}>
-                  <Form handelOnSubmit={onSubmit} defaultValues={initialValues} validate={validate}>
+                  <Form handelOnSubmit={onSubmit} defaultValues={initialValues} onTouchValidationSchemas={validate}>
                     {({ values, handleChange }): React.ReactNode => {
                       return (
                         <>

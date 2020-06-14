@@ -91,7 +91,7 @@ const BookingCard = (props: IBookingCardProps): React.ReactElement<IBookingCardP
           <span>{price}</span>
         </div>
         <div style={{ margin: '1em 0' }}>
-          <Form handelOnSubmit={onSubmit} defaultValues={initialValues} validate={validate}>
+          <Form handelOnSubmit={onSubmit} defaultValues={initialValues} onTouchValidationSchemas={validate}>
             {({ values, handleChange }): React.ReactNode => {
               const getPrice = (values: Record<string, string | number>): void => {
                 const [selectedObj] = packages.filter(p => p.value === +values.package);

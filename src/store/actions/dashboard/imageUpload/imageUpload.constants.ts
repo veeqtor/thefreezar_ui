@@ -1,0 +1,8 @@
+export enum imageUploadTypes {
+  IMAGE_UPLOAD_SET_UPLOAD_FILES = '@@imageUpload/SET_UPLOAD_FILE',
+  IMAGE_UPLOAD_SET_UPLOAD_PROGRESS = '@@imageUpload/SET_UPLOAD_PROGRESS',
+  IMAGE_UPLOAD_SUCCESS = '@@imageUpload/SUCCESS',
+  IMAGE_UOLOAD_FAILURE = '@@imageUpload/FAILURE',
+  IMAGE_UPLOAD_REMOVE = '@@imageUpload/REMOVE_UPLOADED',
+  IMAGE_UPLOAD_RETRY = '@@imageUpload/RETRY_UPLOAD',
+}

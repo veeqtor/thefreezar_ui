@@ -5,6 +5,7 @@ import Textarea from 'modules/components/Shared/ui/Textarea';
 import Button from 'modules/components/Shared/ui/Button';
 import Form from 'modules/components/Form';
 import { mq } from 'styles/_global.style';
+import { validationSchemas } from 'utils';
 
 const ContactForm = (): React.ReactElement => {
   const initialValues = {
@@ -23,7 +24,12 @@ const ContactForm = (): React.ReactElement => {
   };
 
   return (
-    <Form handelOnSubmit={onSubmit} defaultValues={initialValues} validate={validate}>
+    <Form
+      handelOnSubmit={onSubmit}
+      defaultValues={initialValues}
+      onTouchValidationSchemas={validate}
+      onSubmitValidationSchema={validationSchemas.imageUploadOnSubmit}
+    >
       {({ values, handleChange, handleBlur }): React.ReactNode => {
         return (
           <ContactForm.Wrapper>

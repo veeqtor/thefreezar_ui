@@ -8,7 +8,7 @@ interface ILabelAtrProps {
   htmlFor: string;
 }
 
-interface IInputProps {
+export interface IInputProps {
   type?: InputType;
   name: string;
   placeholder?: string;
@@ -47,6 +47,7 @@ Input.Label = styled.label<ILabelAtrProps>`
 
 Input.Input = styled.input`
   width: 100%;
+  height: 2.21875em;
   padding: 0.85em;
   border-radius: 3px;
   border: 1px solid transparent;
