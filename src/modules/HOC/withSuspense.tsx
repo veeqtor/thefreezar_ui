@@ -2,7 +2,7 @@
 /* eslint-disable react/display-name */
 import * as React from 'react';
 import Spinner from 'modules/components/Shared/ui/Spinner';
-import Wrapper from 'modules/HOC/withPrevousPageData';
+// import Wrapper from 'modules/HOC/withPrevousPageData';
 
 export interface IWithSuspenseProps {
   page: string;

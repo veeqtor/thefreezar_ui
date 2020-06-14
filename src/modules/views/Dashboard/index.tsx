@@ -58,23 +58,25 @@ const Dashboard = (props: IDashboardProps): React.ReactElement => {
   };
 
   return (
-    <DashboardLayout
-      isSideBarExpanded={sideBarExpanded}
-      changePagehandler={changePagehandler}
-      toggleSidebarHandler={toggleSidebar}
-      currentRoute={getCurrentRoute()}
-      logOutHandler={logoutHandler}
-    >
+    <>
       <SEO title={title} />
-      {
-        <Switch>
-          {getDashBoardRoutes(path).map((route, index) => (
-            <Route key={index} {...route} />
-          ))}
-          <Redirect to="/dashboard/overview" />
-        </Switch>
-      }
-    </DashboardLayout>
+      <DashboardLayout
+        isSideBarExpanded={sideBarExpanded}
+        changePagehandler={changePagehandler}
+        toggleSidebarHandler={toggleSidebar}
+        currentRoute={getCurrentRoute()}
+        logOutHandler={logoutHandler}
+      >
+        {
+          <Switch>
+            {getDashBoardRoutes(path).map((route, index) => (
+              <Route key={index} {...route} />
+            ))}
+            <Redirect to="/dashboard/overview" />
+          </Switch>
+        }
+      </DashboardLayout>
+    </>
   );
 };
 

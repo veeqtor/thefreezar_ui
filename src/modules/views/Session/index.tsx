@@ -2,15 +2,15 @@ import * as React from 'react';
 import SEO from 'modules/components/SEO';
 import styled from '@emotion/styled';
 import { colors } from 'styles/_variables.style';
-import BookingCard, { IBookingCardProps } from 'modules/components/Booking/BookingCard';
+import SessionCard, { ISessionCardProps } from 'modules/components/Session/SessionCard';
 import { mq } from 'styles/_global.style';
 
-export interface IBookingPage {
+export interface ISessionPage {
   title: string;
 }
 
-const BookingPage = (props: IBookingPage): React.ReactElement => {
-  const bookingCards: IBookingCardProps[] = [
+const SessionPage = (props: ISessionPage): React.ReactElement => {
+  const sessionCard: ISessionCardProps[] = [
     {
       id: 1,
       name: 'HeadShots/ Portraits',
@@ -135,21 +135,21 @@ const BookingPage = (props: IBookingPage): React.ReactElement => {
   return (
     <>
       <SEO title={props.title} />
-      <BookingPage.Layout>
+      <SessionPage.Layout>
         <ul>
-          {bookingCards.map((card, i) => (
+          {sessionCard.map((card, i) => (
             <li key={i}>
-              <BookingCard {...card} />
+              <SessionCard {...card} />
             </li>
           ))}
         </ul>
-        <BookingPage.Clear></BookingPage.Clear>
-      </BookingPage.Layout>
+        <SessionPage.Clear></SessionPage.Clear>
+      </SessionPage.Layout>
     </>
   );
 };
 
-BookingPage.Layout = styled.section`
+SessionPage.Layout = styled.section`
   padding: 6.25em 2em;
   color: ${colors.WHITE};
   margin: 0 auto;
@@ -182,8 +182,8 @@ BookingPage.Layout = styled.section`
   }
 `;
 
-BookingPage.Clear = styled.div`
+SessionPage.Clear = styled.div`
   clear: both;
 `;
 
-export default BookingPage;
+export default SessionPage;

@@ -43,7 +43,7 @@ const NavLinks = ({ location }: INavLinksProps): React.ReactElement => {
       anchor: true,
     },
     {
-      to: '/booking',
+      to: '/session',
       title: 'Book Now',
       anchor: false,
     },

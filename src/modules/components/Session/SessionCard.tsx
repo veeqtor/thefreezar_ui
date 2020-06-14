@@ -17,7 +17,7 @@ interface ISelectOptions {
   value: string | number;
 }
 
-export interface IBookingCardProps {
+export interface ISessionCardProps {
   id: number;
   name: string;
   shortDescription: string;
@@ -26,11 +26,11 @@ export interface IBookingCardProps {
   imageFadeMultiplier?: number;
 }
 
-interface IBookingCardImgWrapper {
+interface ISessionCardImgWrapper {
   imageUrl: string;
 }
 
-const BookingCard = (props: IBookingCardProps): React.ReactElement<IBookingCardProps> => {
+const SessionCard = (props: ISessionCardProps): React.ReactElement<ISessionCardProps> => {
   const { id, packages, name, shortDescription, imageUrls, imageFadeMultiplier } = props;
   const [price, setPrice] = React.useState<string | number>('Select a Package');
   const [selectedBooking, setSelectedBooking] = React.useState({});
@@ -70,21 +70,21 @@ const BookingCard = (props: IBookingCardProps): React.ReactElement<IBookingCardP
   };
 
   const goToDetails = (): void => {
-    dispatch(goToNextPage({ nextPageRoute: '/booking/detail' }));
+    dispatch(goToNextPage({ nextPageRoute: '/session/1234' }));
   };
 
   return (
-    <BookingCard.Wrapper>
-      <BookingCard.Content>
+    <SessionCard.Wrapper>
+      <SessionCard.Content>
         <div>
           <Swiper {...gallerySwiperParams}>
             {imageUrls.map((url, i) => (
-              <BookingCard.Img key={i} imageUrl={url} />
+              <SessionCard.Img key={i} imageUrl={url} />
             ))}
           </Swiper>
         </div>
-      </BookingCard.Content>
-      <BookingCard.Content>
+      </SessionCard.Content>
+      <SessionCard.Content>
         <h2>{name}</h2>
         <p>{shortDescription}</p>
         <div>
@@ -122,12 +122,12 @@ const BookingCard = (props: IBookingCardProps): React.ReactElement<IBookingCardP
             }}
           </Form>
         </div>
-      </BookingCard.Content>
-    </BookingCard.Wrapper>
+      </SessionCard.Content>
+    </SessionCard.Wrapper>
   );
 };
 
-BookingCard.Wrapper = styled.div`
+SessionCard.Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -144,7 +144,7 @@ BookingCard.Wrapper = styled.div`
   }
 `;
 
-BookingCard.Content = styled.div`
+SessionCard.Content = styled.div`
   width: 100%;
   padding: 1em;
 
@@ -170,7 +170,7 @@ BookingCard.Content = styled.div`
   }
 `;
 
-BookingCard.Img = styled.div<IBookingCardImgWrapper>`
+SessionCard.Img = styled.div<ISessionCardImgWrapper>`
   height: 25em;
   background-image: url(${({ imageUrl }): string => imageUrl});
   background-position: center;
@@ -178,4 +178,4 @@ BookingCard.Img = styled.div<IBookingCardImgWrapper>`
   border-radius: 3px;
 `;
 
-export default BookingCard;
+export default SessionCard;
