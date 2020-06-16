@@ -8,8 +8,22 @@ import sessionDetail from 'routes/sessionDetail';
 import dashboard from 'routes/dashboard';
 import basket from 'routes/basket';
 import checkout from 'routes/checkout';
+import authentication from 'routes/authentication';
+import forgotpassword from 'routes/forgotpassword';
+import changePassword from 'routes/changePassword';
 
-const routes = [home, comingSoon, session, sessionDetail, basket, checkout, dashboard];
+const routes = [
+  home,
+  comingSoon,
+  session,
+  sessionDetail,
+  basket,
+  checkout,
+  authentication,
+  forgotpassword,
+  changePassword,
+  dashboard,
+];
 
 const Routes = (): React.ReactElement => {
   return (

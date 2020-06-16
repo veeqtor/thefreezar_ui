@@ -25,7 +25,6 @@ class ValidationSchemas {
     .rule({
       message: 'Invalid Password',
     })
-    .required()
     .min(8)
     .max(16)
     .label('Password');
@@ -38,20 +37,47 @@ class ValidationSchemas {
     .required();
   protected boolRequired = Joi.boolean().required();
 
-  signUp: Joi.ObjectSchema = Joi.object({
-    username: Joi.string()
-      .trim()
-      .max(16)
-      .min(3),
+  authentication: Record<string, any> = {
+    login: {
+      email: this.email,
+      password: this.password.required(),
+      showPassword: Joi.boolean(),
+    },
+    signup: {
+      email: this.email,
+      password: this.password,
+      confirmPassword: this.password.label('Confirm Password'),
+      showPassword: Joi.boolean(),
+    },
+    forgotpassword: {
+      email: this.email,
+    },
 
+    resetPassword: {
+      password: this.password,
+      confirmPassword: this.password.label('Confirm Password'),
+    },
+  };
+
+  authenticationOnSubmit: Joi.ObjectSchema = Joi.object({
     email: this.email,
     password: this.password,
+    confirmPassword: this.password,
+    showPassword: Joi.boolean(),
   });
 
-  login: Joi.ObjectSchema = Joi.object({
-    email: this.email,
-    password: this.password,
-  });
+  genericSubmit = (values: Record<string, any>, required = false): Joi.ObjectSchema => {
+    const output: Record<string, any> = {};
+    for (const key in values) {
+      if (values.hasOwnProperty(key)) {
+        required ? (output[key] = this.anyRequired) : (output[key] = Joi.any().empty(''));
+        if (key === 'email') {
+          output[key] = this.email;
+        }
+      }
+    }
+    return Joi.object(output);
+  };
 
   imageUpload: Record<string, any> = {
     imageFile: this.anyRequired.messages({

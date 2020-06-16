@@ -25,35 +25,42 @@ const ContactForm = (): React.ReactElement => {
 
   return (
     <Form
+      feedbackInfo=""
       handelOnSubmit={onSubmit}
       defaultValues={initialValues}
       onTouchValidationSchemas={validate}
       onSubmitValidationSchema={validationSchemas.imageUploadOnSubmit}
     >
-      {({ values, handleChange, handleBlur }): React.ReactNode => {
+      {({ values, handleChange, handleBlur, errors }): React.ReactNode => {
         return (
           <ContactForm.Wrapper>
             <Input
+              errorFeedback={errors}
               name="name"
               placeholder="Name"
               value={values.name}
               handleBlur={handleBlur}
               handleChange={handleChange}
+              autoComplete="name"
             />
             <Input
+              errorFeedback={errors}
               name="email"
               placeholder="Email"
               type="email"
               value={values.email}
               handleBlur={handleBlur}
               handleChange={handleChange}
+              autoComplete="email"
             />
             <Input
+              errorFeedback={errors}
               name="subject"
               placeholder="Subject"
               value={values.subject}
               handleBlur={handleBlur}
               handleChange={handleChange}
+              autoComplete="subject"
             />
             <Textarea
               name="message"

@@ -22,12 +22,12 @@ const HomePagesLayout = (props: IBasketPage): React.ReactElement => {
 };
 
 HomePagesLayout.Layout = styled.section`
-  padding: 6.25em 2em;
+  padding: 6.25em 1em;
   color: ${colors.WHITE};
   margin: 0 auto;
   max-width: 1440px;
 
-  span {
+  > span {
     color: ${colors.DARKER_GRAY};
     font-size: 2em;
     font-family: Futura;

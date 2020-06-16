@@ -48,7 +48,15 @@ const NavLinks = ({ location }: INavLinksProps): React.ReactElement => {
       anchor: false,
     },
   ];
-  const linksItems = navLinks.map((link, i) => {
+
+  const filteredLinks = navLinks.filter((link): INavLinks | false => {
+    if (location !== '/') {
+      return !link.anchor && link;
+    }
+    return link;
+  });
+
+  const linksItems = filteredLinks.map((link, i) => {
     let links;
     if (!link.anchor) {
       links = <Link to={link.to}>{link.title}</Link>;

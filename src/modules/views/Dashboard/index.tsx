@@ -2,13 +2,13 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import DashboardLayout from 'modules/layouts/DashboardLayout';
-import SEO from 'modules/components/SEO';
 import { Switch, Route, match, Redirect } from 'react-router-dom';
 import { getDashBoardRoutes } from 'routes/dashboard';
 import { selectNavigation } from 'store/selectors';
 import { IApplicationRootState } from 'types';
 import { connect } from 'react-redux';
 import { goToNextPage, savePageState } from 'store/actions/navigation';
+import { getCurrentRoute } from 'utils';
 
 export interface IDashboardProps {
   title: string;
@@ -22,7 +22,6 @@ export interface IDashboardProps {
 
 const Dashboard = (props: IDashboardProps): React.ReactElement => {
   const {
-    title,
     match: { path },
     navigation,
     location: { pathname },
@@ -36,20 +35,10 @@ const Dashboard = (props: IDashboardProps): React.ReactElement => {
   const toggleSidebar = (): void => {
     setSideBarExpanded(!sideBarExpanded);
   };
-  const getCurrentRoute = (): string => {
-    let current = 'overview';
-    const slicedPathname = pathname.split('/').slice(-2);
-    if (slicedPathname[1]) {
-      current = slicedPathname[1];
-    } else if (slicedPathname[0]) {
-      current = slicedPathname[0];
-    }
-    return current;
-  };
 
-  const changePagehandler = (pathname: string): void => {
-    if (getCurrentRoute() === pathname) return;
-    saveState({ sideBarExpanded }), changePage(pathname);
+  const changePagehandler = (pagePath: string): void => {
+    if (getCurrentRoute(pathname, 'overview') === pagePath) return;
+    saveState({ sideBarExpanded }), changePage(pagePath);
   };
 
   const logoutHandler = (): void => {
@@ -59,12 +48,11 @@ const Dashboard = (props: IDashboardProps): React.ReactElement => {
 
   return (
     <>
-      <SEO title={title} />
       <DashboardLayout
         isSideBarExpanded={sideBarExpanded}
         changePagehandler={changePagehandler}
         toggleSidebarHandler={toggleSidebar}
-        currentRoute={getCurrentRoute()}
+        currentRoute={getCurrentRoute(pathname, 'overview')}
         logOutHandler={logoutHandler}
       >
         {

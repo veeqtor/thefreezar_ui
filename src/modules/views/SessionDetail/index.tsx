@@ -120,6 +120,7 @@ const SessionDetailPage = (props: ISessionDetailPageProp): React.ReactElement =>
             </div>
             <div style={{ margin: '1em 0' }}>
               <Form
+                feedbackInfo=""
                 handelOnSubmit={onSubmit}
                 defaultValues={initialValues}
                 onTouchValidationSchemas={validate}
@@ -200,7 +201,12 @@ const SessionDetailPage = (props: ISessionDetailPageProp): React.ReactElement =>
                   <SessionReviewCard key={i} name={review.name} date={review.date} review={review.review} />
                 ))}
                 <div style={{ margin: '1em' }}>
-                  <Form handelOnSubmit={onSubmit} defaultValues={initialValues} onTouchValidationSchemas={validate}>
+                  <Form
+                    feedbackInfo=""
+                    handelOnSubmit={onSubmit}
+                    defaultValues={initialValues}
+                    onTouchValidationSchemas={validate}
+                  >
                     {({ values, handleChange }): React.ReactNode => {
                       return (
                         <>
