@@ -15,7 +15,7 @@ const TabPanel = (props: any): React.ReactElement => {
   });
 
   return (
-    <CSSTransition classNames="fade" in={isActive} timeout={1000}>
+    <CSSTransition classNames="transition-item" in={isActive} timeout={1000}>
       {(): React.ReactNode => isActive && <TabPanel.Wrapper {...restProps}>{children}</TabPanel.Wrapper>}
     </CSSTransition>
   );

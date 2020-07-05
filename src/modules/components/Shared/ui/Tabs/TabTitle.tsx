@@ -14,7 +14,7 @@ const TabTitle = (): React.ReactElement => {
     <>
       <TabTitle.List>
         {tabContext.context.tabs.map((tab: { id: number; title: React.ReactNode }, i: string | number | undefined) => (
-          <TabTitle.ListItem key={i}>
+          <TabTitle.ListItem key={i} isActive={tabContext.context.activeTab.id === tab.id}>
             <TabTitle.ListItemSpan
               onClick={tabContext.context.onClick(tab)}
               onKeyDown={tabContext.context.onClick(tab)}
@@ -23,7 +23,6 @@ const TabTitle = (): React.ReactElement => {
             >
               {tab.title}
             </TabTitle.ListItemSpan>
-            <TabTitle.ListItemBorder isActive={tabContext.context.activeTab.id === tab.id} />
           </TabTitle.ListItem>
         ))}
       </TabTitle.List>
@@ -41,9 +40,13 @@ TabTitle.List = styled.ul`
   text-transform: uppercase;
   font-size: small;
 `;
-TabTitle.ListItem = styled.li`
-  padding: 1em 1em 1em 0;
+TabTitle.ListItem = styled.li<{ isActive: boolean }>`
   cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: all 500ms ease-in-out;
+  ${({ isActive }): string =>
+    isActive ? `border-bottom: 3px solid ${colors.PRIMARY}` : `border-bottom: 3px solid ${colors.DARKER_GRAY}`};
 `;
 
 TabTitle.ListItemBorder = styled.div<IListItemProps>`
@@ -51,14 +54,15 @@ TabTitle.ListItemBorder = styled.div<IListItemProps>`
   width: 0;
   margin-top: 0.7em;
   background: ${colors.PRIMARY};
-  transition: all 300ms ease-in;
-  ${({ isActive }): string | false => isActive && `width: 120%;`};
 `;
 
 TabTitle.ListItemSpan = styled.span`
-  display: block;
   width: 100%;
   outline: none;
+  display: block;
+  padding: 1em;
+  font-family: Futura;
+  text-transform: capitalize;
 `;
 
 export default TabTitle;

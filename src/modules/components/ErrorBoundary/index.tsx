@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import * as Sentry from '@sentry/browser';
 
@@ -15,8 +16,8 @@ export default class ErrorBoundary extends React.Component<{}, IErrorBoundarySta
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-    Sentry.withScope((scope: { setExtras: (arg0: React.ErrorInfo) => void }) => {
+  componentDidCatch(error: Error, errorInfo: any): void {
+    Sentry.withScope(scope => {
       scope.setExtras(errorInfo);
       const eventId = Sentry.captureException(error);
       this.setState({ eventId });

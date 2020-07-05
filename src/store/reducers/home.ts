@@ -10,10 +10,7 @@ const initialState: ContainerState = {
   },
 };
 
-export default function navigationReducer(
-  state: ContainerState = initialState,
-  action: ContainerActions,
-): ContainerState {
+export default function homeReducer(state: ContainerState = initialState, action: ContainerActions): ContainerState {
   switch (action.type) {
     case HomeTypes.HOME_RETRIEVE_REQUEST:
       return {

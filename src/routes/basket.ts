@@ -1,13 +1,14 @@
 import withSuspense, { IWithSuspenseProps } from 'modules/HOC/withSuspense';
 
 const data: IWithSuspenseProps = {
-  page: 'BookingDetail',
+  page: 'Basket',
   data: {
-    title: 'Detail',
+    title: 'My Basket',
   },
 };
+
 export default {
-  path: '/booking/detail',
+  path: '/basket',
   component: withSuspense(data),
-  exact: false,
+  exact: true,
 };

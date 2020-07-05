@@ -2,14 +2,15 @@
 import * as React from 'react';
 import Routes from 'routes';
 import Navigation from 'modules/components/Shared/Navigation';
-import Footer from 'modules/components/Shared/Footer';
+import * as AppFooter from 'modules/components/Shared/Footer';
 import { connect } from 'react-redux';
 import { IApplicationRootState } from 'types';
+import { Layout } from 'antd';
 
 interface IViewsProps {
   location: Record<string, any>;
 }
-
+const { Header, Footer, Content } = Layout;
 const Views = (props: IViewsProps): React.ReactElement<{}> => {
   const { location } = props;
   const [isDashboard, setIsDashboard] = React.useState(false);
@@ -25,9 +26,17 @@ const Views = (props: IViewsProps): React.ReactElement<{}> => {
 
   return (
     <>
-      <Navigation isDashboard={isDashboard} currentLocation={location.pathname} />
-      <Routes />
-      <Footer />
+      <Layout>
+        <Header>
+          <Navigation isDashboard={isDashboard} currentLocation={location.pathname} />
+        </Header>
+        <Content>
+          <Routes />
+        </Content>
+        <Footer>
+          <AppFooter.default />
+        </Footer>
+      </Layout>
     </>
   );
 };

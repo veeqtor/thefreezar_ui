@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Global } from '@emotion/core';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
-
+import 'antd/dist/antd.css';
 import _globalStyle from 'styles/_global.style';
 import store, { history } from 'store';
 import ErrorBoundary from 'modules/components/ErrorBoundary';

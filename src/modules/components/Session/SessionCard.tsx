@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import Swiper from 'react-id-swiper';
 import { useDispatch } from 'react-redux';
 
-import { colors } from 'styles/_variables.style';
+import { colors, spacing } from 'styles/_variables.style';
 import Form from 'modules/components/Form';
 import Button from 'modules/components/Shared/ui/Button';
 import Select from 'modules/components/Shared/ui/Select';
@@ -14,24 +14,25 @@ import { goToNextPage } from 'store/actions/navigation';
 interface ISelectOptions {
   id: number;
   name: string;
-  value: string | number;
+  price: string | number;
+  value: number | string;
 }
 
-export interface IBookingCardProps {
-  id: number;
+export interface ISessionCardProps {
+  id: string;
   name: string;
-  shortDescription: string;
-  imageUrls: string[];
+  description: string;
+  images: string[];
   packages: ISelectOptions[];
-  imageFadeMultiplier?: number;
+  imageFadeMultiplier: number;
 }
 
-interface IBookingCardImgWrapper {
+interface ISessionCardImgWrapper {
   imageUrl: string;
 }
 
-const BookingCard = (props: IBookingCardProps): React.ReactElement<IBookingCardProps> => {
-  const { id, packages, name, shortDescription, imageUrls, imageFadeMultiplier } = props;
+const SessionCard = (props: ISessionCardProps): React.ReactElement<ISessionCardProps> => {
+  const { id, packages, name, description, images, imageFadeMultiplier } = props;
   const [price, setPrice] = React.useState<string | number>('Select a Package');
   const [selectedBooking, setSelectedBooking] = React.useState({});
   const dispatch = useDispatch();
@@ -69,38 +70,44 @@ const BookingCard = (props: IBookingCardProps): React.ReactElement<IBookingCardP
     },
   };
 
-  const goToDetails = (): void => {
-    dispatch(goToNextPage({ nextPageRoute: '/booking/detail' }));
+  const goToDetails = (id: string): void => {
+    dispatch(goToNextPage({ nextPageRoute: `/session/${id}` }));
   };
 
   return (
-    <BookingCard.Wrapper>
-      <BookingCard.Content>
+    <SessionCard.Wrapper>
+      <SessionCard.Content>
         <div>
           <Swiper {...gallerySwiperParams}>
-            {imageUrls.map((url, i) => (
-              <BookingCard.Img key={i} imageUrl={url} />
+            {images.map((url, i) => (
+              <SessionCard.Img key={i} imageUrl={url} />
             ))}
           </Swiper>
         </div>
-      </BookingCard.Content>
-      <BookingCard.Content>
+      </SessionCard.Content>
+      <SessionCard.Content>
         <h2>{name}</h2>
-        <p>{shortDescription}</p>
-        <div>
+        <p>{description}</p>
+        <SessionCard.Package>
           <span>{price}</span>
-        </div>
+        </SessionCard.Package>
         <div style={{ margin: '1em 0' }}>
-          <Form handelOnSubmit={onSubmit} defaultValues={initialValues} onTouchValidationSchemas={validate}>
+          <Form
+            feedbackInfo=""
+            handelOnSubmit={onSubmit}
+            defaultValues={initialValues}
+            onTouchValidationSchemas={validate}
+          >
             {({ values, handleChange }): React.ReactNode => {
               const getPrice = (values: Record<string, string | number>): void => {
-                const [selectedObj] = packages.filter(p => p.value === +values.package);
-                selectedObj && setPrice(selectedObj.value);
+                const [selectedObj] = packages.filter(p => p.price === +values.package);
+                selectedObj && setPrice(selectedObj.price);
                 selectedObj && setSelectedBooking(selectedObj);
               };
               React.useEffect(() => {
                 getPrice(values);
               }, [values.package]);
+              packages.forEach(elm => (elm['value'] = elm.price));
               return (
                 <div>
                   <Select
@@ -115,19 +122,19 @@ const BookingCard = (props: IBookingCardProps): React.ReactElement<IBookingCardP
                     type="button"
                     buttonType="block"
                     buttonStyle="primary"
-                    handleOnclick={goToDetails}
+                    handleOnclick={(): void => goToDetails(id)}
                   />
                 </div>
               );
             }}
           </Form>
         </div>
-      </BookingCard.Content>
-    </BookingCard.Wrapper>
+      </SessionCard.Content>
+    </SessionCard.Wrapper>
   );
 };
 
-BookingCard.Wrapper = styled.div`
+SessionCard.Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -144,7 +151,7 @@ BookingCard.Wrapper = styled.div`
   }
 `;
 
-BookingCard.Content = styled.div`
+SessionCard.Content = styled.div`
   width: 100%;
   padding: 1em;
 
@@ -170,7 +177,7 @@ BookingCard.Content = styled.div`
   }
 `;
 
-BookingCard.Img = styled.div<IBookingCardImgWrapper>`
+SessionCard.Img = styled.div<ISessionCardImgWrapper>`
   height: 25em;
   background-image: url(${({ imageUrl }): string => imageUrl});
   background-position: center;
@@ -178,4 +185,11 @@ BookingCard.Img = styled.div<IBookingCardImgWrapper>`
   border-radius: 3px;
 `;
 
-export default BookingCard;
+SessionCard.Package = styled.div`
+  background-color: ${colors.DARKER_GRAY};
+  box-shadow: 0 1px 3px 0 rgba(46, 46, 46, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+  padding: ${spacing.sm};
+`;
+
+export default SessionCard;

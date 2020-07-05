@@ -4,6 +4,7 @@ import { mq } from 'styles/_global.style';
 import { colors } from 'styles/_variables.style';
 import UploadImage from 'modules/components/Dashboard/UploadImage';
 import UploadImageForm from 'modules/components/Dashboard/UploadImageForm';
+import SEO from 'modules/components/SEO';
 
 export interface IOverviewProp {
   title: string;
@@ -12,15 +13,18 @@ export interface IOverviewProp {
 const Overview = (props: IOverviewProp): React.ReactElement => {
   const { title } = props;
   return (
-    <Overview.Wrapper>
-      <Overview.Left>
-        <h1>Left {title}</h1>
-      </Overview.Left>
-      <Overview.Right>
-        <UploadImageForm />
-        <UploadImage />
-      </Overview.Right>
-    </Overview.Wrapper>
+    <>
+      <SEO title={title} />
+      <Overview.Wrapper>
+        <Overview.Left>
+          <h1>Left {title}</h1>
+        </Overview.Left>
+        <Overview.Right>
+          <UploadImageForm />
+          <UploadImage />
+        </Overview.Right>
+      </Overview.Wrapper>
+    </>
   );
 };
 

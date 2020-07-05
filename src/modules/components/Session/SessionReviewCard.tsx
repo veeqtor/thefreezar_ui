@@ -2,33 +2,33 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { colors } from 'styles/_variables.style';
 
-export interface IBookingReviewCardProp {
+export interface ISessionReviewCardProp {
   name: string;
   date: string;
   review: string;
 }
-const BookingReviewCard = (props: IBookingReviewCardProp): React.ReactElement => {
+const SessionReviewCard = (props: ISessionReviewCardProp): React.ReactElement => {
   const { name, date, review } = props;
   return (
     <>
-      <BookingReviewCard.Wrapper>
-        <BookingReviewCard.Header>
+      <SessionReviewCard.Wrapper>
+        <SessionReviewCard.Header>
           <span>{name}</span>
           <span>{date}</span>
-        </BookingReviewCard.Header>
-        <BookingReviewCard.Review>
+        </SessionReviewCard.Header>
+        <SessionReviewCard.Review>
           <p>{review}</p>
-        </BookingReviewCard.Review>
-      </BookingReviewCard.Wrapper>
+        </SessionReviewCard.Review>
+      </SessionReviewCard.Wrapper>
     </>
   );
 };
-BookingReviewCard.Wrapper = styled.div`
+SessionReviewCard.Wrapper = styled.div`
   width: 100%;
   padding: 1em;
   border-bottom: 1px solid ${colors.DARKER_GRAY};
 `;
-BookingReviewCard.Header = styled.div`
+SessionReviewCard.Header = styled.div`
   display: flex;
   justify-content: space-between;
 
@@ -38,6 +38,6 @@ BookingReviewCard.Header = styled.div`
   }
 `;
 
-BookingReviewCard.Review = styled.div``;
+SessionReviewCard.Review = styled.div``;
 
-export default BookingReviewCard;
+export default SessionReviewCard;

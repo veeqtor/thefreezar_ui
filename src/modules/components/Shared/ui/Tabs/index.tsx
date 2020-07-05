@@ -25,8 +25,6 @@ TabComponent.TabTitleWrapper = styled.div`
 `;
 TabComponent.TabPanelWrapper = styled.div`
   padding: 1em;
-  min-height: 40vh;
-  overflow: hidden;
 `;
 
 export { TabComponent as Tabs, TabPanel };
