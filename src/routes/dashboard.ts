@@ -22,6 +22,7 @@ const getDashBoardRoutes = (path: string): RouteProps[] => {
         data: {
           title: 'Dashboard - Overview',
         },
+        transparentLoader: true,
       }),
       exact: true,
     },
@@ -32,6 +33,7 @@ const getDashBoardRoutes = (path: string): RouteProps[] => {
         data: {
           title: 'Dashboard - Profile',
         },
+        transparentLoader: true,
       }),
       exact: true,
     },
@@ -42,6 +44,7 @@ const getDashBoardRoutes = (path: string): RouteProps[] => {
         data: {
           title: 'Dashboard - Sessions',
         },
+        transparentLoader: true,
       }),
       exact: true,
     },
@@ -52,6 +55,7 @@ const getDashBoardRoutes = (path: string): RouteProps[] => {
         data: {
           title: 'Dashboard - Settings',
         },
+        transparentLoader: true,
       }),
       exact: true,
     },

@@ -11,9 +11,19 @@ export const colors = {
 };
 
 export const fontSize = {
-  sm: '.5em',
-  md: '1.5em',
+  xsm: '.8em',
+  sm: '.9256em',
+  md: '1.2em',
+  lg: '2em',
+  xlg: '2.2em',
+  normal: '1rem',
+};
+
+export const spacing = {
+  xsm: '.5em',
+  sm: '0.9em',
+  md: '1.2em',
+  normal: '1em',
   lg: '2em',
   xlg: '2.5em',
-  normal: '1rem',
 };

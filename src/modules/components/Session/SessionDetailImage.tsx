@@ -3,14 +3,14 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import Swiper from 'react-id-swiper';
 
-interface IBookingDetailImageImgWrapper {
+interface ISessionDetailImageImgWrapper {
   imageUrl: string;
 }
-interface IBookingDetailImageProps {
+interface ISessionDetailImageProps {
   imageUrls: string[];
 }
 
-const BookingDetailImage = (props: IBookingDetailImageProps): React.ReactElement => {
+const SessionDetailImage = (props: ISessionDetailImageProps): React.ReactElement => {
   const { imageUrls } = props;
   const [gallerySwiper, getGallerySwiper] = React.useState<Record<string, any>>({});
   const [thumbnailSwiper, getThumbnailSwiper] = React.useState<Record<string, any>>({});
@@ -47,31 +47,31 @@ const BookingDetailImage = (props: IBookingDetailImageProps): React.ReactElement
 
   return (
     <div>
-      <BookingDetailImage.ImgWrapper>
+      <SessionDetailImage.ImgWrapper>
         <Swiper {...gallerySwiperParams}>
           {imageUrls.map((url, i) => (
-            <BookingDetailImage.Img key={i} imageUrl={url} />
+            <SessionDetailImage.Img key={i} imageUrl={url} />
           ))}
         </Swiper>
-      </BookingDetailImage.ImgWrapper>
-      <BookingDetailImage.ThumbnailWrapper>
+      </SessionDetailImage.ImgWrapper>
+      <SessionDetailImage.ThumbnailWrapper>
         <Swiper {...thumbnailSwiperParams}>
           {imageUrls.map((url, i) => (
-            <BookingDetailImage.Thumbnail key={i} imageUrl={url} />
+            <SessionDetailImage.Thumbnail key={i} imageUrl={url} />
           ))}
         </Swiper>
-      </BookingDetailImage.ThumbnailWrapper>
+      </SessionDetailImage.ThumbnailWrapper>
     </div>
   );
 };
 
-BookingDetailImage.ImgWrapper = styled.div``;
+SessionDetailImage.ImgWrapper = styled.div``;
 
-BookingDetailImage.ThumbnailWrapper = styled.div`
+SessionDetailImage.ThumbnailWrapper = styled.div`
   margin-top: 1em;
 `;
 
-BookingDetailImage.Img = styled.div<IBookingDetailImageImgWrapper>`
+SessionDetailImage.Img = styled.div<ISessionDetailImageImgWrapper>`
   height: 30vh;
   background-image: url(${({ imageUrl }): string => imageUrl});
   background-position: center;
@@ -79,7 +79,7 @@ BookingDetailImage.Img = styled.div<IBookingDetailImageImgWrapper>`
   border-radius: 3px;
 `;
 
-BookingDetailImage.Thumbnail = styled.div<IBookingDetailImageImgWrapper>`
+SessionDetailImage.Thumbnail = styled.div<ISessionDetailImageImgWrapper>`
   height: 3em;
   background-image: url(${({ imageUrl }): string => imageUrl});
   background-position: center;
@@ -87,4 +87,4 @@ BookingDetailImage.Thumbnail = styled.div<IBookingDetailImageImgWrapper>`
   border-radius: 3px;
 `;
 
-export default BookingDetailImage;
+export default SessionDetailImage;

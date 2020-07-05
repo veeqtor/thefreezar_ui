@@ -5,13 +5,23 @@ import Form from 'modules/components/Form';
 import Checkbox from 'modules/components/Shared/ui/Checkbox';
 import styled from '@emotion/styled';
 import { validationSchemas } from 'utils';
-import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import ImagePicker from 'modules/components/Shared/ui/ImagePicker';
 import Button from 'modules/components/Shared/ui/Button';
 import { setUploadFiles } from 'store/actions/dashboard/imageUpload';
+import { IApplicationRootState } from 'types';
 
-const UploadImageForm = (): React.ReactElement => {
-  const dispatch = useDispatch();
+interface IUploadImageFormProps {
+  dispatchSetUploadFiles?: (data: ISetUploadFilesProps) => void;
+  imageUploadStatus?: { isUploading: boolean };
+}
+
+interface ISetUploadFilesProps {
+  data: Record<string, any>;
+  clearForm: Function;
+}
+const UploadImageForm = (props: IUploadImageFormProps): React.ReactElement => {
+  const { dispatchSetUploadFiles, imageUploadStatus } = props;
 
   const initialValues = {
     imageFile: undefined,
@@ -20,7 +30,7 @@ const UploadImageForm = (): React.ReactElement => {
   };
 
   const onSubmit = (data: Record<string, any>): void => {
-    dispatch(setUploadFiles({ data: data.data, clearForm: data.clearForm }));
+    dispatchSetUploadFiles && dispatchSetUploadFiles({ data: data.data, clearForm: data.clearForm });
   };
 
   return (
@@ -28,6 +38,7 @@ const UploadImageForm = (): React.ReactElement => {
       <h4>Upload Images</h4>
       <UploadImageForm.FormWrapper>
         <Form
+          feedbackInfo=""
           handelOnSubmit={onSubmit}
           defaultValues={initialValues}
           onSubmitValidationSchema={validationSchemas.imageUploadOnSubmit}
@@ -82,7 +93,14 @@ const UploadImageForm = (): React.ReactElement => {
                     buttonType="block"
                     buttonStyle="outline"
                   />
-                  <Button title="Upload " type="submit" buttonType="block" buttonStyle="primary" disabled={false} />
+                  <Button
+                    title="Upload"
+                    isLoading={imageUploadStatus?.isUploading}
+                    type="submit"
+                    buttonType="block"
+                    buttonStyle="primary"
+                    disabled={false}
+                  />
                 </UploadImageForm.RightFormFooter>
               </>
             );
@@ -106,4 +124,12 @@ UploadImageForm.FormWrapper = styled.div`
   padding-bottom: 1em;
 `;
 
-export default UploadImageForm;
+const mapStateToProps = (state: IApplicationRootState): any => ({
+  imageUploadStatus: state.imageUpload.status,
+});
+
+const mapDispatchToProps = (dispatch: Function): Pick<IUploadImageFormProps, 'dispatchSetUploadFiles'> => ({
+  dispatchSetUploadFiles: (data: ISetUploadFilesProps): void => dispatch(setUploadFiles(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UploadImageForm);

@@ -1,13 +1,13 @@
 import withSuspense, { IWithSuspenseProps } from 'modules/HOC/withSuspense';
 
 const data: IWithSuspenseProps = {
-  page: 'Booking',
+  page: 'Authentication/ChangePassword',
   data: {
-    title: 'Booking',
+    title: 'Password Reset',
   },
 };
 export default {
-  path: '/booking',
+  path: '/password/reset',
   component: withSuspense(data),
-  exact: true,
+  exact: false,
 };

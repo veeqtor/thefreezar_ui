@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
+import { match } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import SEO from 'modules/components/SEO';
@@ -8,15 +9,18 @@ import Form from 'modules/components/Form';
 import Select from 'modules/components/Shared/ui/Select';
 import Button from 'modules/components/Shared/ui/Button';
 import { mq } from 'styles/_global.style';
-import BookingDetailImage from 'modules/components/Booking/BookingDetailImage';
+import BookingDetailImage from 'modules/components/Session/SessionDetailImage';
 import { Tabs, TabPanel } from 'modules/components/Shared/ui/Tabs';
 import Textarea from 'modules/components/Shared/ui/Textarea';
-import BookingReviewCard, { IBookingReviewCardProp } from 'modules/components/Booking/BookingReviewCard';
+import SessionReviewCard, { ISessionReviewCardProp } from 'modules/components/Session/SessionReviewCard';
 import { goToNextPage } from 'store/actions/navigation';
 import { validationSchemas } from 'utils';
 
-export interface IBookingDetailPageProp {
+export interface ISessionDetailPageProp {
   title: string;
+  match: match<{
+    sessionId: string;
+  }>;
 }
 
 const imageUrls: string[] = [
@@ -26,7 +30,12 @@ const imageUrls: string[] = [
   'https://images.pexels.com/photos/3923560/pexels-photo-3923560.jpeg?cs=srgb&dl=man-holding-a-flower-3923560.jpg&fm=jpg',
 ];
 
-const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement => {
+const SessionDetailPage = (props: ISessionDetailPageProp): React.ReactElement => {
+  const {
+    match: {
+      params: { sessionId },
+    },
+  } = props;
   const [price, setPrice] = React.useState<string | number>('Select a Package:');
   const dispatch = useDispatch();
 
@@ -53,7 +62,7 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
     },
   ];
 
-  const reviews: IBookingReviewCardProp[] = [
+  const reviews: ISessionReviewCardProp[] = [
     {
       name: 'Joghead',
       date: '2 weeks ago',
@@ -74,6 +83,8 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
     },
   ];
   const onSubmit = (data: Record<string, unknown>): void => {
+    dispatch(goToNextPage({ nextPageRoute: '/session/checkout/' }));
+
     console.log(data);
   };
 
@@ -82,17 +93,22 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
   };
 
   const goBack = (): void => {
-    dispatch(goToNextPage({ nextPageRoute: '/booking' }));
+    dispatch(goToNextPage({ nextPageRoute: '/session' }));
   };
+
+  React.useEffect(() => {
+    console.log(sessionId);
+  }, []);
+
   return (
     <>
       <SEO title={props.title} />
-      <BookingDetailPage.Layout>
-        <BookingDetailPage.FirstWrapper>
-          <BookingDetailPage.Image>
+      <SessionDetailPage.Layout>
+        <SessionDetailPage.FirstWrapper>
+          <SessionDetailPage.Image>
             <BookingDetailImage imageUrls={imageUrls} />
-          </BookingDetailPage.Image>
-          <BookingDetailPage.Description>
+          </SessionDetailPage.Image>
+          <SessionDetailPage.Description>
             <h2>free session</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quisquam ipsum minima esse minus illum
@@ -104,6 +120,7 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
             </div>
             <div style={{ margin: '1em 0' }}>
               <Form
+                feedbackInfo=""
                 handelOnSubmit={onSubmit}
                 defaultValues={initialValues}
                 onTouchValidationSchemas={validate}
@@ -128,7 +145,7 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
                           placeholder="Select a package"
                         />
                       </div>
-                      <BookingDetailPage.TimeSelectWrapper>
+                      <SessionDetailPage.TimeSelectWrapper>
                         <Select
                           name="avaiableDay"
                           options={packages}
@@ -143,8 +160,8 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
                           value={values.avaiableTime}
                           placeholder="Choose time"
                         />
-                      </BookingDetailPage.TimeSelectWrapper>
-                      <BookingDetailPage.ButtonWrapper>
+                      </SessionDetailPage.TimeSelectWrapper>
+                      <SessionDetailPage.ButtonWrapper>
                         <Button
                           title="Back"
                           type="button"
@@ -153,15 +170,15 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
                           handleOnclick={goBack}
                         />
                         <Button title="Book " type="submit" buttonType="block" buttonStyle="primary" />
-                      </BookingDetailPage.ButtonWrapper>
+                      </SessionDetailPage.ButtonWrapper>
                     </>
                   );
                 }}
               </Form>
             </div>
-          </BookingDetailPage.Description>
-        </BookingDetailPage.FirstWrapper>
-        <BookingDetailPage.SecondWrapper>
+          </SessionDetailPage.Description>
+        </SessionDetailPage.FirstWrapper>
+        <SessionDetailPage.SecondWrapper>
           <Tabs activeTab={{ id: 1 }}>
             <TabPanel id={1} title="Details">
               <div>
@@ -181,10 +198,15 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
             <TabPanel id={2} title="Review">
               <div>
                 {reviews.map((review, i) => (
-                  <BookingReviewCard key={i} name={review.name} date={review.date} review={review.review} />
+                  <SessionReviewCard key={i} name={review.name} date={review.date} review={review.review} />
                 ))}
                 <div style={{ margin: '1em' }}>
-                  <Form handelOnSubmit={onSubmit} defaultValues={initialValues} onTouchValidationSchemas={validate}>
+                  <Form
+                    feedbackInfo=""
+                    handelOnSubmit={onSubmit}
+                    defaultValues={initialValues}
+                    onTouchValidationSchemas={validate}
+                  >
                     {({ values, handleChange }): React.ReactNode => {
                       return (
                         <>
@@ -207,19 +229,19 @@ const BookingDetailPage = (props: IBookingDetailPageProp): React.ReactElement =>
               </div>
             </TabPanel>
           </Tabs>
-        </BookingDetailPage.SecondWrapper>
-      </BookingDetailPage.Layout>
+        </SessionDetailPage.SecondWrapper>
+      </SessionDetailPage.Layout>
     </>
   );
 };
 
-BookingDetailPage.Layout = styled.section`
+SessionDetailPage.Layout = styled.section`
   padding: 6.25em 2em;
   max-width: 900px;
   margin: 0 auto;
 `;
 
-BookingDetailPage.FirstWrapper = styled.div`
+SessionDetailPage.FirstWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -236,7 +258,7 @@ BookingDetailPage.FirstWrapper = styled.div`
     flex-direction: row;
   }
 `;
-BookingDetailPage.SecondWrapper = styled.div`
+SessionDetailPage.SecondWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -246,14 +268,14 @@ BookingDetailPage.SecondWrapper = styled.div`
   margin-bottom: 1em;
   min-height: 40vh;
 `;
-BookingDetailPage.Image = styled.div`
+SessionDetailPage.Image = styled.div`
   padding: 1em;
   ${mq[1]} {
     width: 60%;
   }
 `;
 
-BookingDetailPage.Description = styled.div`
+SessionDetailPage.Description = styled.div`
   padding: 1em;
   width: 100%;
 
@@ -269,7 +291,7 @@ BookingDetailPage.Description = styled.div`
     text-transform: uppercase;
   }
 `;
-BookingDetailPage.ButtonWrapper = styled.div`
+SessionDetailPage.ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
 
@@ -279,6 +301,6 @@ BookingDetailPage.ButtonWrapper = styled.div`
   }
 `;
 
-BookingDetailPage.TimeSelectWrapper = BookingDetailPage.ButtonWrapper.withComponent('div');
+SessionDetailPage.TimeSelectWrapper = SessionDetailPage.ButtonWrapper.withComponent('div');
 
-export default BookingDetailPage;
+export default SessionDetailPage;

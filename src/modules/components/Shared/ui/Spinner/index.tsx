@@ -6,7 +6,7 @@ import { jsx, keyframes } from '@emotion/core';
 import { colors } from 'styles/_variables.style';
 import { Size } from 'modules/components/Shared/ui/Icon';
 
-const spin = keyframes`
+export const spin = keyframes`
 to {
     transform: rotate(360deg);
   }`;
@@ -16,16 +16,20 @@ export declare type type = 'primary' | 'secondary';
 interface ISpinnerWrapper {
   size?: Size | undefined;
   type?: type;
+  isTransparent?: boolean;
 }
 
 interface ISpinnerProps {
   size?: Size;
   type?: type;
+  isTransparent?: boolean;
 }
-const Spinner = ({ size, type }: ISpinnerProps): React.ReactElement => <Spinner.Wrapper size={size} type={type} />;
+const Spinner = ({ size, type, isTransparent = false }: ISpinnerProps): React.ReactElement => (
+  <Spinner.Wrapper size={size} type={type} isTransparent={isTransparent} />
+);
 
 Spinner.Wrapper = styled.div<ISpinnerWrapper>`
-background: ${colors.BLACK};
+background: ${({ isTransparent }): string => (isTransparent ? 'transparent' : colors.BLACK)};
 height: 100vh;
 z-index: 1000;
 position: relative;

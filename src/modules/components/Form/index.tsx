@@ -3,6 +3,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { validateWithJoi } from 'utils';
 import Joi from '@hapi/joi';
+import { colors } from 'styles/_variables.style';
 
 type FormInputType = HTMLTextAreaElement | HTMLSelectElement | HTMLInputElement;
 interface IEventTarget extends EventTarget {
@@ -20,6 +21,7 @@ interface IFormProps {
   onTouchValidationSchemas?: Record<string, any>;
   onSubmitValidationSchema?: Joi.ObjectSchema;
   children: (props: IChildrenProps) => React.ReactNode;
+  feedbackInfo: string;
 }
 
 interface IChildrenProps {
@@ -30,10 +32,18 @@ interface IChildrenProps {
   handleChange: (event: IChangeEvent<FormInputType>) => void;
   handleBlur: (event: IChangeEvent<FormInputType>) => void;
   handleClearFormSelections: () => void;
+  shouldDisableSubmitButton: () => boolean;
 }
 
 const Form = (props: IFormProps): React.ReactElement<IFormProps> => {
-  const { children, defaultValues, handelOnSubmit, onTouchValidationSchemas, onSubmitValidationSchema } = props;
+  const {
+    children,
+    defaultValues,
+    handelOnSubmit,
+    onTouchValidationSchemas,
+    onSubmitValidationSchema,
+    feedbackInfo,
+  } = props;
   const [values, setValues] = React.useState(defaultValues || {});
   const [touchedValues, setTouchedValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
@@ -80,6 +90,14 @@ const Form = (props: IFormProps): React.ReactElement<IFormProps> => {
     setImagePickerlabelText('');
   };
 
+  const shouldDisableSubmitButton = (): boolean => {
+    const err = onSubmitValidationSchema ? validateWithJoi(values, onSubmitValidationSchema) : null;
+    if (values && values['confirmPassword']) {
+      return !!err || values['password'] !== values['confirmPassword'];
+    }
+    return !!err;
+  };
+
   const handleBlur = (event: IChangeEvent<FormInputType>): void => {
     const {
       target: { name, value },
@@ -90,10 +108,22 @@ const Form = (props: IFormProps): React.ReactElement<IFormProps> => {
       [name]: true,
     });
     const err = onTouchValidationSchemas ? validateWithJoi(value, onTouchValidationSchemas[name]) : null;
-    setErrors({
-      ...errors,
-      [name]: err,
-    });
+    if (values && values['confirmPassword']) {
+      values['password'] !== values['confirmPassword']
+        ? setErrors({
+            ...errors,
+            confirmPassword: 'Passwords does not match',
+          })
+        : setErrors({
+            ...errors,
+            confirmPassword: undefined,
+          });
+    } else {
+      setErrors({
+        ...errors,
+        [name]: err,
+      });
+    }
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -114,14 +144,26 @@ const Form = (props: IFormProps): React.ReactElement<IFormProps> => {
       handleBlur,
       imagePickerlabelText,
       handleClearFormSelections,
+      shouldDisableSubmitButton,
     };
   };
 
-  return <Form.Wrapper onSubmit={handleSubmit}>{children(composeProps())}</Form.Wrapper>;
+  return (
+    <Form.Wrapper onSubmit={handleSubmit}>
+      <span>{feedbackInfo && feedbackInfo}</span>
+      {children(composeProps())}
+    </Form.Wrapper>
+  );
 };
 
 Form.Wrapper = styled.form`
   width: 100%;
+  > span {
+    text-align: center;
+    width: 100%;
+    display: block;
+    color: ${colors.ERROR};
+  }
 `;
 
 export default Form;

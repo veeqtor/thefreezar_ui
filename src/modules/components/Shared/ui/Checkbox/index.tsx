@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { colors, fontSize } from 'styles/_variables.style';
+import { colors, fontSize, spacing } from 'styles/_variables.style';
 import { css } from '@emotion/core';
 import { jsx } from '@emotion/core';
 import { IInputProps } from 'modules/components/Shared/ui/Input';
@@ -153,7 +153,7 @@ const inputStyle = css`
 type InputType = 'radio' | 'checkbox';
 type CheckboxType = 'normal' | 'switch';
 
-export interface ICheckboxProps extends Omit<IInputProps, 'type'> {
+export interface ICheckboxProps extends Omit<IInputProps, 'type' | 'autoComplete' | 'errorFeedback'> {
   type?: InputType;
   checkboxType?: CheckboxType;
   checked: boolean;
@@ -181,7 +181,10 @@ const Checkbox = (props: ICheckboxProps): React.ReactElement => {
 };
 
 Checkbox.Wrapper = styled.div`
-  padding-bottom: 1em;
+  margin-bottom: ${spacing.sm};
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 `;
 
 Checkbox.Label = styled.label``;
